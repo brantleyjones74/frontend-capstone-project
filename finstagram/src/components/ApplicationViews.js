@@ -2,9 +2,10 @@
 
 import { Route, Redirect } from "react-router-dom";
 import React, { Component } from "react";
-import Register from "./auth/Register";
+import Home from "./home/Home";
+import Welcome from "./welcome/Welcome";
 
-export default class ApplicationViews extends Component {
+class ApplicationViews extends Component {
   // function that checks to see if the user is logged in and stored in session storage
   isUserAuthenticated = () => sessionStorage.getItem("activeUser") !== null;
   // function that converts the activeUser value in session storage to an integer
@@ -32,3 +33,5 @@ export default class ApplicationViews extends Component {
     );
   }
 }
+
+export default ApplicationViews;
