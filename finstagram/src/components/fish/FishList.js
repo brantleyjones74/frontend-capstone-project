@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
-
 import FishCard from "./FishCard";
 import FishManager from "../../modules/FishManager";
 import FishAddModal from "./FishAddModal";
@@ -27,13 +26,6 @@ export default class FishList extends Component {
     return FishManager.addNewFish(obj).then(() => {
       this.componentDidMount();
     });
-    // return FishManager.addNewFish(obj).then(() => {
-    //   FishManager.getAllFish(this.props.activeUser()).then(fish => {
-    //     this.setState({
-    //       fish: fish
-    //     });
-    //   });
-    // });
   };
 
   // method to handle updating an existing fish from the API. update state w/ updated data.
@@ -58,16 +50,17 @@ export default class FishList extends Component {
         </section>
         <div>
           <h3>Fishes </h3>
-          <p>
-            Be sure to{" "}
-            <strong>
-              not use the standard <code>.btn</code> classes here
-            </strong>
-            .
-          </p>
           <ListGroup>
             <ListGroupItem active tag="a" href="#" action>
-              <FishCard />
+              {this.state.fish.map(fish => {
+                return <FishCard
+                  key={fish.id}
+                  fish={fish}
+                  editFish={this.editFish}
+                  deleteFish={this.deleteFish}
+                  {...this.props}
+                />;
+              })}
             </ListGroupItem>
           </ListGroup>
           <p />

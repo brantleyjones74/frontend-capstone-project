@@ -62,22 +62,29 @@ export default class ModalExample extends React.Component {
   submitNewFish = evt => {
     // prevents page from reloading
     evt.preventDefault();
-    // save image to firebase
-    const imagesRef = firebase.storage().ref("images");
-    const childRef = imagesRef.child(`${this.state.fishSpecies}-${Date.now()}`);
-    childRef
-      .put(this.state.photo)
-      .then(response => response.ref.getDownloadURL())
-      .then(url => {
-        // prevents blank input from being added to API
-        if (
-          this.state.fishSpecies === "" ||
-          this.state.fishLength === "" ||
-          this.state.fishWeight === "" ||
-          this.state.fishLure === ""
-        ) {
-          window.alert("Please fill out all fields.");
-        } else {
+    // basic input validation. if any field is empty alerts the user to fill out all fields.
+    if (
+      this.state.fishSpecies === "" ||
+      this.state.fishLength === "" ||
+      this.state.fishWeight === ""
+    ) {
+      window.alert("Please fill out all fields.");
+    } else if (this.state.photo !== null) {
+      /* SAVE IMAGE USING FIREBASE */
+      // saves the reference of the image stored in firebase
+      const imagesRef = firebase.storage().ref("images");
+      // stores the child of the imagesRef. names the photo after what is typed into the species input & a timestamp
+      const childRef = imagesRef.child(
+        `${this.state.fishSpecies}-${Date.now()}`
+      );
+
+      childRef
+        // for child reference change the state of photo
+        .put(this.state.photo)
+        // fetch the download URL of the response from firebase
+        .then(response => response.ref.getDownloadURL())
+        // pass the URL down to store in json
+        .then(url => {
           const fish = {
             species: this.state.fishSpecies,
             length: this.state.fishLength,
@@ -87,9 +94,22 @@ export default class ModalExample extends React.Component {
             timeStamp: this.state.timeStamp,
             photoUrl: url
           };
+          // adds the new fish to the API && closes the modal
           this.props.addNewFish(fish).then(() => this.toggle());
-        }
-      });
+        });
+    } else {
+      // creates a new fish object using the values from state
+      const fish = {
+        species: this.state.fishSpecies,
+        length: this.state.fishLength,
+        weight: this.state.fishWeight,
+        lure: this.state.fishLure,
+        catchOfDay: this.state.catchOfDay,
+        timeStamp: this.state.timeStamp
+      };
+      // adds the new fish to the API && closes the modal
+      this.props.addNewFish(fish).then(() => this.toggle());
+    }
   };
 
   render() {

@@ -47,10 +47,10 @@ class ApplicationViews extends Component {
           }}
         />
 
-        {/* Routes to fishList */}
+        {/* Routes to fish */}
         <Route
           exact
-          path="/fishList"
+          path="/fish"
           render={props => {
             return <FishList activeUser={this.activeUser} {...props} />;
           }}

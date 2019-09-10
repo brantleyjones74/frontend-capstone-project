@@ -7,6 +7,8 @@ class Home extends Component {
       <div>
         <h1>This is the home page.</h1>
         <Link to="/creels">Creels</Link>
+        <br />
+        <Link to="/fish">Fish</Link>
       </div>
     );
   }
