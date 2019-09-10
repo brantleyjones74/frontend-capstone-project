@@ -29,6 +29,8 @@ export default class ModalExample extends React.Component {
       fishWeight: "",
       fishLure: "",
       catchOfDay: false,
+      photoUrl: "",
+      photo: null,
       timeStamp: Date.now()
     };
 
@@ -56,28 +58,38 @@ export default class ModalExample extends React.Component {
     this.setState(stateChange);
   };
 
-  createNewFish = evt => {
-    evt.preventDefault(); // prevents page from reloading
-
-    // prevents blank input from being added to API
-    if (
-      this.state.fishSpecies === "" ||
-      this.state.fishLength === "" ||
-      this.state.fishWeight === "" ||
-      this.state.fishLure === ""
-    ) {
-      window.alert("Please fill out all fields.");
-    } else {
-      const fish = {
-        species: this.state.fishSpecies,
-        length: this.state.fishLength,
-        weight: this.state.fishWeight,
-        lure: this.state.fishLure,
-        catchOfDay: this.state.catchOfDay,
-        timeStamp: this.state.timeStamp
-      };
-      this.props.addNewFish(fish).then(() => this.toggle());
-    }
+  // submit new fish
+  submitNewFish = evt => {
+    // prevents page from reloading
+    evt.preventDefault();
+    // save image to firebase
+    const imagesRef = firebase.storage().ref("images");
+    const childRef = imagesRef.child(`${this.state.fishSpecies}-${Date.now()}`);
+    childRef
+      .put(this.state.photo)
+      .then(response => response.ref.getDownloadURL())
+      .then(url => {
+        // prevents blank input from being added to API
+        if (
+          this.state.fishSpecies === "" ||
+          this.state.fishLength === "" ||
+          this.state.fishWeight === "" ||
+          this.state.fishLure === ""
+        ) {
+          window.alert("Please fill out all fields.");
+        } else {
+          const fish = {
+            species: this.state.fishSpecies,
+            length: this.state.fishLength,
+            weight: this.state.fishWeight,
+            lure: this.state.fishLure,
+            catchOfDay: this.state.catchOfDay,
+            timeStamp: this.state.timeStamp,
+            photoUrl: url
+          };
+          this.props.addNewFish(fish).then(() => this.toggle());
+        }
+      });
   };
 
   render() {
@@ -126,7 +138,11 @@ export default class ModalExample extends React.Component {
               <option value="hardPlastic">Hard Plastic</option>
               <option value="other">Other</option>
             </Input>
-            <Input id="fishPic" type="file"></Input>
+            <Input
+              id="fishPic"
+              type="file"
+              onChange={e => this.setState({ photo: e.target.files[0] })}
+            ></Input>
             <FormGroup check>
               <Label check>
                 <Input type="checkbox" id="catchOfDay" />
@@ -135,7 +151,7 @@ export default class ModalExample extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.createNewFish}>
+            <Button color="primary" onClick={this.submitNewFish}>
               Do Something
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

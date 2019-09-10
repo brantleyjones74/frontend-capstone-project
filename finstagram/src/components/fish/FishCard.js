@@ -1,46 +1,41 @@
 // Purpose: Renders a "card" that contains the info for a single fish.
 
 import React, { Component } from "react";
-import {
-  Card,
-  Button,
-  CardTitle,
-  CardBody,
-  CardText,
-  CardImg,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 import FishManager from "../../modules/FishManager";
 
 // import FishEditModal from "./FishEditModal"
 
 // CHANGE COLOR OF TEXT.
 export default class FishCard extends Component {
-  state = {
-    fish: []
-  };
-
-  componentDidMount() {
-    FishManager.getAllFish().then(fish => {
-      this.setState({ fish: fish });
-    });
-  }
-
   render() {
     return (
-      <div>
-        {this.state.fish.map(fish => {
-          return (
-            <Card>
-              <CardBody>
-                <CardImg src={fish.photoUrl}></CardImg>
-                <CardText>{fish.species}</CardText>
-              </CardBody>
-            </Card>
-          );
-        })}
-      </div>
+      <Row>
+        <Col sm="6">
+          <Card body>
+            <CardTitle className="text-danger">Fish Card</CardTitle>
+            <CardText className="text-danger">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </CardText>
+            <Button>Fish Details</Button>
+            <Button>Edit Fish</Button>
+            <Button>Delete Fish</Button>
+          </Card>
+        </Col>
+        <Col sm="6">
+          <Card body>
+            <CardTitle className="text-danger">Fish Card</CardTitle>
+            <CardText className="text-danger">
+              With supporting text below as a natural lead-in to additional
+              content.
+            </CardText>
+            <Button>Fish Details</Button>
+            <Button>Edit Fish</Button>
+            <Button>Delete Fish</Button>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }
