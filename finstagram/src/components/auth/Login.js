@@ -41,6 +41,7 @@ class Login extends React.Component {
               "activeUser",
               JSON.stringify(userArray[0].id)
             );
+            this.props.history.push("/");
             // routes back to /home after user id is stored in session storage
             // this.props.history.push("/home");
           } else {
