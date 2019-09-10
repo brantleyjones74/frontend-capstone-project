@@ -1,4 +1,4 @@
-// Purpose: Handles all api methods for Finstagram.
+// Purpose: Handles all api methods for authentication in Finstagram.
 
 const jsonServerURL = "http://localhost:5002";
 
