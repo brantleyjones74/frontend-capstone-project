@@ -14,6 +14,8 @@ import {
   Form,
   FormGroup
 } from "reactstrap";
+import * as firebase from "firebase/app";
+import "firebase/storage";
 
 export default class ModalExample extends React.Component {
   constructor(props) {
@@ -26,7 +28,8 @@ export default class ModalExample extends React.Component {
       fishLength: "",
       fishWeight: "",
       fishLure: "",
-      catchOfDay: false
+      catchOfDay: false,
+      timeStamp: Date.now()
     };
 
     this.toggle = this.toggle.bind(this);
@@ -53,9 +56,8 @@ export default class ModalExample extends React.Component {
     this.setState(stateChange);
   };
 
-  // factory function that creates a new fish obj to be added to API
   createNewFish = evt => {
-    evt.preventDefault();
+    evt.preventDefault(); // prevents page from reloading
 
     // prevents blank input from being added to API
     if (
@@ -71,8 +73,8 @@ export default class ModalExample extends React.Component {
         length: this.state.fishLength,
         weight: this.state.fishWeight,
         lure: this.state.fishLure,
-        catchOfDay: this.state.catchOfDay
-        // timeStamp: ???
+        catchOfDay: this.state.catchOfDay,
+        timeStamp: this.state.timeStamp
       };
       this.props.addNewFish(fish).then(() => this.toggle());
     }
