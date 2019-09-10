@@ -52,7 +52,7 @@ class Register extends React.Component {
           // invokes the postNewUser API method to log new user to database.
           Authentication.addNewUser(newUserObject).then(userObject => {
             sessionStorage.setItem("activeUser", JSON.stringify(userObject.id));
-            // this.props.history.push("/home");
+            this.props.history.push("/");
           });
         }
       });
