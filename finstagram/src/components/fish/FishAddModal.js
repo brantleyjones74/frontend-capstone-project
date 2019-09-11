@@ -30,7 +30,7 @@ export default class ModalExample extends React.Component {
       fishLure: "",
       catchOfDay: false,
       photoUrl: "",
-      photo: null,
+      photo: "",
       timeStamp: Date.now()
     };
 
@@ -69,7 +69,7 @@ export default class ModalExample extends React.Component {
       this.state.fishWeight === ""
     ) {
       window.alert("Please fill out all fields.");
-    } else if (this.state.photo !== null) {
+    } else if (this.state.photo !== "") {
       /* SAVE IMAGE USING FIREBASE */
       // saves the reference of the image stored in firebase
       const imagesRef = firebase.storage().ref("images");
@@ -77,7 +77,6 @@ export default class ModalExample extends React.Component {
       const childRef = imagesRef.child(
         `${this.state.fishSpecies}-${Date.now()}`
       );
-
       childRef
         // for child reference change the state of photo
         .put(this.state.photo)
@@ -105,7 +104,8 @@ export default class ModalExample extends React.Component {
         weight: this.state.fishWeight,
         lure: this.state.fishLure,
         catchOfDay: this.state.catchOfDay,
-        timeStamp: this.state.timeStamp
+        timeStamp: this.state.timeStamp,
+        photoUrl: ""
       };
       // adds the new fish to the API && closes the modal
       this.props.addNewFish(fish).then(() => this.toggle());
@@ -116,7 +116,7 @@ export default class ModalExample extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="danger" onClick={this.toggle}>
+          <Button color="success" onClick={this.toggle}>
             Catch a Fish!
           </Button>
         </Form>
@@ -153,10 +153,10 @@ export default class ModalExample extends React.Component {
               placeholder="Lure Type"
               onChange={this.inputFieldHandler}
             >
-              <option value="liveBait">Live Bait</option>
-              <option value="softPlastic">Soft Plastic</option>
-              <option value="hardPlastic">Hard Plastic</option>
-              <option value="other">Other</option>
+              <option value="Live Bait">Live Bait</option>
+              <option value="Soft Plastic">Soft Plastic</option>
+              <option value="Hard Plastic">Hard Plastic</option>
+              <option value="Other">Other</option>
             </Input>
             <Input
               id="fishPic"

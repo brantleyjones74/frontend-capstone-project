@@ -12,33 +12,36 @@ export default class FishList extends Component {
     fish: []
   };
 
-  // fetches all fish for the active user. changes state to the response from the api
-  componentDidMount() {
+  fetchAllFish = () => {
     FishManager.getAllFish(this.props.activeUser()).then(fish => {
       this.setState({
         fish: fish
       });
     });
+  };
+  // fetches all fish for the active user. changes state to the response from the api
+  componentDidMount() {
+    this.fetchAllFish();
   }
 
   // method to add new fish and then fetch the updated API. updates state with the new data.
   addNewFish = obj => {
     return FishManager.addNewFish(obj).then(() => {
-      this.componentDidMount();
+      this.fetchAllFish();
     });
   };
 
   // method to handle updating an existing fish from the API. update state w/ updated data.
   editFish = (obj, id) => {
-    return FishManager.editFish(obj, id).then(() => {
-      this.componentDidMount();
+    return FishManager.updateFish(obj, id).then(() => {
+      this.fetchAllFish();
     });
   };
 
   // method to delete an existing fish from the API. update state after deleting fish.
   deleteFish = id => {
     FishManager.deleteFish(id).then(() => {
-      this.componentDidMount();
+      this.fetchAllFish();
     });
   };
 
@@ -53,13 +56,15 @@ export default class FishList extends Component {
           <ListGroup>
             <ListGroupItem active tag="a" href="#" action>
               {this.state.fish.map(fish => {
-                return <FishCard
-                  key={fish.id}
-                  fish={fish}
-                  editFish={this.editFish}
-                  deleteFish={this.deleteFish}
-                  {...this.props}
-                />;
+                return (
+                  <FishCard
+                    key={fish.id}
+                    fish={fish}
+                    editFish={this.editFish}
+                    deleteFish={this.deleteFish}
+                    {...this.props}
+                  />
+                );
               })}
             </ListGroupItem>
           </ListGroup>

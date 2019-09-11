@@ -1,11 +1,6 @@
 // Purpose: Creates a list displaying all Creel Cards.
 
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
-
-import CreelCard from "./CreelCard";
-// import CreelManager from "../../modules/CreelManager"
-// import CreelAddModal from "./CreelAddModal";
 
 export default class CreelList extends Component {
   render() {
@@ -19,12 +14,6 @@ export default class CreelList extends Component {
           </strong>
           .
         </p>
-        <ListGroup>
-          <ListGroupItem active tag="a" href="#" action>
-            <CreelCard />
-          </ListGroupItem>
-        </ListGroup>
-        <p />
       </div>
     );
   }
