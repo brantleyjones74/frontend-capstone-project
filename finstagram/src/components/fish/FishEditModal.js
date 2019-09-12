@@ -27,6 +27,7 @@ export default class FishEditModal extends React.Component {
       fishLure: "",
       catchOfDay: false,
       photo: "",
+      creelId: "",
       timeStamp: Date.now()
     };
 
@@ -63,6 +64,7 @@ export default class FishEditModal extends React.Component {
         fishWeight: fish.weight,
         fishLure: fish.lure,
         catchOfDay: fish.catchOfDay,
+        creelId: fish.creelId,
         photo: fish.photoUrl,
         timeStamp: Date.now()
       });
@@ -102,6 +104,7 @@ export default class FishEditModal extends React.Component {
             weight: this.state.fishWeight,
             lure: this.state.fishLure,
             catchOfDay: this.state.catchOfDay,
+            creelId: this.state.creelId,
             photoUrl: url,
             timeStamp: this.state.timeStamp
           };
@@ -119,6 +122,7 @@ export default class FishEditModal extends React.Component {
         weight: this.state.fishWeight,
         lure: this.state.fishLure,
         catchOfDay: this.state.catchOfDay,
+        creelId: this.state.creelId,
         timeStamp: this.state.timeStamp,
         photoUrl: this.state.photo
       };

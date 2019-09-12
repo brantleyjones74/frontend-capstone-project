@@ -78,7 +78,9 @@ export default class CreelEditModal extends React.Component {
         name: this.state.name,
         date: this.state.date,
         location: this.state.location,
-        notes: this.state.notes
+        notes: this.state.notes,
+        timeStamp: this.state.timeStamp,
+        userId: this.props.activeUser(),
       };
       this.props
         .editCreel(editedCreel, this.props.creel.id)
