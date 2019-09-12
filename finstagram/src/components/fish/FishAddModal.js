@@ -17,13 +17,13 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 
-export default class ModalExample extends React.Component {
+export default class FishAddModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
       unmountOnClose: true,
-      // add key values here
+      // add key values here. set initial state to empty string.
       fishSpecies: "",
       fishLength: "",
       fishWeight: "",
@@ -58,9 +58,9 @@ export default class ModalExample extends React.Component {
     this.setState(stateChange);
   };
 
-  // submit new fish
+  // submit new fish function
   submitNewFish = evt => {
-    // prevents page from reloading
+    // prevents page from reloading when event happens
     evt.preventDefault();
     // basic input validation. if any field is empty alerts the user to fill out all fields.
     if (
@@ -69,6 +69,7 @@ export default class ModalExample extends React.Component {
       this.state.fishWeight === ""
     ) {
       window.alert("Please fill out all fields.");
+      // if photo in state is NOT equal to an empty string
     } else if (this.state.photo !== "") {
       /* SAVE IMAGE USING FIREBASE */
       // saves the reference of the image stored in firebase
@@ -77,12 +78,12 @@ export default class ModalExample extends React.Component {
       const childRef = imagesRef.child(
         `${this.state.fishSpecies}-${Date.now()}`
       );
+      // for child reference change the state of photo. use put method from firebase
+      // fetch the download URL of the response from firebase
+      // pass the URL down to fish object and store url in photoUrl. makes a new object named fish. updates keys with values from state
       childRef
-        // for child reference change the state of photo
         .put(this.state.photo)
-        // fetch the download URL of the response from firebase
         .then(response => response.ref.getDownloadURL())
-        // pass the URL down to store in json
         .then(url => {
           const fish = {
             species: this.state.fishSpecies,
@@ -93,10 +94,11 @@ export default class ModalExample extends React.Component {
             timeStamp: this.state.timeStamp,
             photoUrl: url
           };
-          // adds the new fish to the API && closes the modal
+          // adds the new fish to the json database && closes the modal w/ toggle function
           this.props.addNewFish(fish).then(() => this.toggle());
         });
     } else {
+      /* IF THERE IS NOT A PHOTO */
       // creates a new fish object using the values from state
       const fish = {
         species: this.state.fishSpecies,
@@ -107,7 +109,7 @@ export default class ModalExample extends React.Component {
         timeStamp: this.state.timeStamp,
         photoUrl: ""
       };
-      // adds the new fish to the API && closes the modal
+      // adds the new fish to the API && closes the modal w/ toggle function
       this.props.addNewFish(fish).then(() => this.toggle());
     }
   };
@@ -117,6 +119,7 @@ export default class ModalExample extends React.Component {
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
           <Button color="success" onClick={this.toggle}>
+            {/* when the button is clicked use toggle method to open modal */}
             Catch a Fish!
           </Button>
         </Form>
@@ -133,24 +136,27 @@ export default class ModalExample extends React.Component {
               id="fishSpecies"
               type="text"
               placeholder="Fish Species"
+              // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
             <Input
               id="fishLength"
               type="number"
               placeholder="Fish Length in inches"
+              // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
             <Input
               id="fishWeight"
               type="number"
               placeholder="Fish Weight in pounds"
+              // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
             <Input
               id="fishLure"
               type="select"
-              placeholder="Lure Type"
+              // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             >
               <option value="Live Bait">Live Bait</option>
@@ -161,6 +167,7 @@ export default class ModalExample extends React.Component {
             <Input
               id="fishPic"
               type="file"
+              // on change of input set state of photo to file being chosen
               onChange={e => this.setState({ photo: e.target.files[0] })}
             ></Input>
             <FormGroup check>
@@ -171,6 +178,7 @@ export default class ModalExample extends React.Component {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
+            {/* when button is clicked submit new fish to database */}
             <Button color="primary" onClick={this.submitNewFish}>
               Do Something
             </Button>{" "}

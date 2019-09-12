@@ -43,7 +43,7 @@ class ApplicationViews extends Component {
           exact
           path="/creels"
           render={props => {
-            return <CreelList />;
+            return <CreelList activeUser={this.activeUser} {...props} />;
           }}
         />
 

@@ -12,6 +12,7 @@ export default class FishList extends Component {
     fish: []
   };
 
+  // fetch all fish for the active user. updates state to the response from the api
   fetchAllFish = () => {
     FishManager.getAllFish(this.props.activeUser()).then(fish => {
       this.setState({
@@ -19,7 +20,8 @@ export default class FishList extends Component {
       });
     });
   };
-  // fetches all fish for the active user. changes state to the response from the api
+
+  // mounts component to the page and displays state.
   componentDidMount() {
     this.fetchAllFish();
   }
@@ -49,19 +51,26 @@ export default class FishList extends Component {
     return (
       <React.Fragment>
         <section>
+          {/* inject the add fish modal and pass addNewFish and props to it */}
           <FishAddModal addNewFish={this.addNewFish} {...this.props} />
         </section>
         <div>
           <h3>Fishes </h3>
           <ListGroup>
             <ListGroupItem active tag="a" href="#" action>
+              {/* map over array of fish and then pass fish into the FishCard component */}
               {this.state.fish.map(fish => {
                 return (
                   <FishCard
+                    // id of fish being displayed
                     key={fish.id}
+                    // i'm not sure???
                     fish={fish}
+                    // pass editFish function into FishCard component
                     editFish={this.editFish}
+                    // pass deleteFish function into FishCard component
                     deleteFish={this.deleteFish}
+                    // pass props into Fish Card component
                     {...this.props}
                   />
                 );

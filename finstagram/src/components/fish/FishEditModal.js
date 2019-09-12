@@ -8,8 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Form,
-  FormText
+  Form
 } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/storage";
@@ -55,6 +54,7 @@ export default class FishEditModal extends React.Component {
     this.setState(stateChange);
   };
 
+  // fetches data and fills out data in the form from json database
   componentDidMount() {
     FishManager.getFish(this.props.fish.id).then(fish => {
       this.setState({
@@ -79,7 +79,7 @@ export default class FishEditModal extends React.Component {
       this.state.fishWeight === ""
     ) {
       window.alert("Please fill out all fields.");
-      //   if state.photo is not an empty string
+      //   if type of photo in state is an object
     } else if (typeof this.state.photo === "object") {
       /* SAVE IMAGE USING FIREBASE */
       // saves the reference of the image stored in firebase
@@ -88,12 +88,12 @@ export default class FishEditModal extends React.Component {
       const childRef = imagesRef.child(
         `${this.state.fishSpecies}-${Date.now()}`
       );
+      // for child reference change the state of photo using put method
+      // fetch the download URL of the response from firebase
+      // pass the URL down to editedFish object and store url in photoUrl. also makes a new obj named editedFish and updates the keys with values from state
       childRef
-        // for child reference change the state of photo
         .put(this.state.photo)
-        // fetch the download URL of the response from firebase
         .then(response => response.ref.getDownloadURL())
-        // pass the URL down to store in json
         .then(url => {
           // store edited fish w/ url for photo
           const editedFish = {
@@ -105,12 +105,14 @@ export default class FishEditModal extends React.Component {
             photoUrl: url,
             timeStamp: this.state.timeStamp
           };
+          // edits the existing fish in the json database && closes the modal w/ toggle function
           this.props
             .editFish(editedFish, this.props.fish.id)
             .then(() => this.toggle());
         });
     } else {
-      // for user who doesn't have a photo to begin wit
+      /* IF THERE IS NOT A PHOTO */
+      // creates an editedFish object and updates keys w/ values from state
       const editedFish = {
         species: this.state.fishSpecies,
         length: this.state.fishLength,
@@ -120,6 +122,7 @@ export default class FishEditModal extends React.Component {
         timeStamp: this.state.timeStamp,
         photoUrl: this.state.photo
       };
+      // updates existing fish w/ new data && closes the modal w/ toggle function
       this.props
         .editFish(editedFish, this.props.fish.id)
         .then(() => this.toggle());
@@ -131,6 +134,7 @@ export default class FishEditModal extends React.Component {
         <Form inline onSubmit={e => e.preventDefault()}>
           {" "}
           <Button color="primary" onClick={this.toggle}>
+            {/* when the button is clicked toggle the edit fish modal */}
             Edit Fish
           </Button>
         </Form>
@@ -145,24 +149,28 @@ export default class FishEditModal extends React.Component {
             <Input
               id="fishSpecies"
               type="text"
+              // invoke inputFieldHandler function when input field is changed
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishSpecies}
             />
             <Input
               id="fishLength"
               type="number"
+              // invoke inputFieldHandler function when input field is changed
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishLength}
             />
             <Input
               id="fishWeight"
               type="number"
+              // invoke inputFieldHandler function when input field is changed
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishWeight}
             />
             <Input
               id="fishLure"
               type="select"
+              // invoke inputFieldHandler function when input field is changed
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishLure}
             >
@@ -178,8 +186,9 @@ export default class FishEditModal extends React.Component {
             />
           </ModalBody>
           <ModalFooter>
+            {/* when button is clicked update the existing fish info in json database */}
             <Button color="primary" onClick={this.updateExistingFish}>
-              Do Something
+              Update Fish
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel
