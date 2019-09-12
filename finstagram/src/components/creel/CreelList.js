@@ -1,10 +1,9 @@
 // Purpose: Creates a list displaying all Creel Cards.
 
 import React, { Component } from "react";
-import CreelCard from "./CreelCard"
+import CreelCard from "./CreelCard";
 import CreelManager from "../../modules/CreelManager";
 import CreelAddModal from "./CreelAddModal";
-import FishList from "../fish/FishList";
 
 export default class CreelList extends Component {
   state = {
@@ -62,16 +61,6 @@ export default class CreelList extends Component {
             />
           );
         })}
-        {/* {this.state.creel.map(creel => {
-          return (
-            <FishList
-              key={creel.id}
-              creel={creel}
-              editCreel={this.editCreel}
-              deleteCreel={this.deleteCreel}
-              {...this.props}
-            />
-          ); */}
       </div>
     );
   }

@@ -2,15 +2,7 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  CardTitle,
-  CardImg,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 import CreelEditModal from "./CreelEditModal";
 
 // CHANGE COLOR OF TEXT.
@@ -31,7 +23,8 @@ export default class FishCard extends Component {
               {this.props.creel.notes}
             </CardText>
             <Button>
-              <Link to="/fish">Details</Link>
+              {/* link to all fish in a specific creel */}
+              <Link to={`/creels/${this.props.creel.id}`}>Details</Link>
             </Button>
             <CreelEditModal {...this.props} />
             <Button>Delete</Button>

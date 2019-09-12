@@ -10,9 +10,9 @@ export default {
     );
   },
 
-  // fetches all existing fishs for a single user
+  // fetches all existing fishs for a single creel
   getAllFish(id) {
-    return fetch(`${jsonServerURL}/fish?userId=${id}`).then(response =>
+    return fetch(`${jsonServerURL}/fish?creelId=${id}`).then(response =>
       response.json()
     );
   },

@@ -14,7 +14,7 @@ export default class FishList extends Component {
 
   // fetch all fish for the active user. updates state to the response from the api
   fetchAllFish = () => {
-    FishManager.getAllFish(this.props.activeUser()).then(fish => {
+    FishManager.getAllFish(this.props.creelId).then(fish => {
       this.setState({
         fish: fish
       });
@@ -52,6 +52,7 @@ export default class FishList extends Component {
       <React.Fragment>
         <section>
           {/* inject the add fish modal and pass addNewFish and props to it */}
+          {/* creelId is passed through props */}
           <FishAddModal addNewFish={this.addNewFish} {...this.props} />
         </section>
         <div>
