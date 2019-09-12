@@ -64,7 +64,7 @@ export default class FishList extends Component {
                   <FishCard
                     // id of fish being displayed
                     key={fish.id}
-                    // i'm not sure???
+                    // passes fish down to props
                     fish={fish}
                     // pass editFish function into FishCard component
                     editFish={this.editFish}

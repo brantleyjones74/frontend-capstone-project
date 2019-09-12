@@ -23,9 +23,7 @@ export default class FishCard extends Component {
               {/* the title of the card is the species. species is coming from props */}
               {this.props.fish.species}
             </CardTitle>
-            <CardImg
-              src={this.props.fish.photoUrl}
-            ></CardImg>
+            <CardImg src={this.props.fish.photoUrl}></CardImg>
             <CardText className="text-danger">
               {/* length of fish coming from props. inches hard coded in */}
               {this.props.fish.length} inches
