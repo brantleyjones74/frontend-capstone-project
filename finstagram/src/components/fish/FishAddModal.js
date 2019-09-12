@@ -28,7 +28,7 @@ export default class FishAddModal extends React.Component {
       fishLength: "",
       fishWeight: "",
       fishLure: "",
-      catchOfDay: false,
+      catchOfDay: "",
       photoUrl: "",
       photo: "",
       timeStamp: Date.now()
@@ -175,7 +175,11 @@ export default class FishAddModal extends React.Component {
             ></Input>
             <FormGroup check>
               <Label check>
-                <Input type="checkbox" id="catchOfDay" />
+                <Input
+                  type="checkbox"
+                  id="catchOfDay"
+                  onChange={this.inputFieldHandler}
+                />
                 Catch of the Day
               </Label>
             </FormGroup>

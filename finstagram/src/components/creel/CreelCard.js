@@ -27,7 +27,9 @@ export default class FishCard extends Component {
               <Link to={`/creels/${this.props.creel.id}`}>Details</Link>
             </Button>
             <CreelEditModal {...this.props} />
-            <Button>Delete</Button>
+            <Button onClick={() => this.props.deleteCreel(this.props.creel.id)}>
+              Delete
+            </Button>
           </Card>
         </Col>
       </Row>

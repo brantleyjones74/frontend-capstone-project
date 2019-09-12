@@ -41,7 +41,7 @@ export default {
 
   // DELETE method to delete existing creel from API
   deleteCreel(id) {
-    return fetch(`${jsonServerURL}/cree/${id}`, {
+    return fetch(`${jsonServerURL}/creel/${id}`, {
       method: "DELETE"
     }).then(response => response.json());
   }
