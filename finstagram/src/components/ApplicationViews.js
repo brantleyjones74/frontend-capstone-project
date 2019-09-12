@@ -31,7 +31,7 @@ class ApplicationViews extends Component {
           path="/"
           render={props => {
             if (this.isUserAuthenticated()) {
-              return <Home />;
+              return <Home activeUser={this.activeUser} {...props} />;
             } else {
               return <Welcome />;
             }
@@ -47,25 +47,18 @@ class ApplicationViews extends Component {
           }}
         />
 
-        {/* <Route
-          exact
-          path="/creels/:creelId(\d+)"
-          render={props => {
-            return (
-              <CreelDetail
-                creelId={parseInt(props.match.params.creelId)}
-                {...props}
-              />
-            );
-          }}
-        /> */}
-
         {/* Routes to all fish in a specific creel */}
         <Route
           exact
           path="/creels/:creelId(\d+)"
           render={props => {
-            return <FishList activeUser={this.activeUser} {...props} creelId={parseInt(props.match.params.creelId)} />;
+            return (
+              <FishList
+                activeUser={this.activeUser}
+                {...props}
+                creelId={parseInt(props.match.params.creelId)}
+              />
+            );
           }}
         />
       </React.Fragment>
