@@ -1,7 +1,9 @@
 // Purpose: Creates a list displaying all Creel Cards.
 
 import React, { Component } from "react";
+import CreelCard from "./CreelCard"
 import CreelManager from "../../modules/CreelManager";
+import CreelAddModal from "./CreelAddModal";
 import FishList from "../fish/FishList";
 
 export default class CreelList extends Component {
@@ -9,6 +11,7 @@ export default class CreelList extends Component {
     creel: []
   };
 
+  // fetch all creels for active user. updates state to the response from the API
   fetchAllCreel = () => {
     CreelManager.getAllCreels(this.props.activeUser()).then(creel => {
       this.setState({
@@ -17,22 +20,26 @@ export default class CreelList extends Component {
     });
   };
 
+  // mounts component to the page and displays state
   componentDidMount() {
     this.fetchAllCreel();
   }
 
+  // method to add new creel and then fetch updated API
   addNewCreel = obj => {
     return CreelManager.addNewCreel(obj).then(() => {
       this.fetchAllCreel();
     });
   };
 
+  // method to update existing creel and fetch data from API
   editCreel = (obj, id) => {
     return CreelManager.updateCreel(obj, id).then(() => {
       this.fetchAllCreel();
     });
   };
 
+  // delete an existing creel and update state.
   deleteCreel = id => {
     CreelManager.deleteCreel(id).then(() => {
       this.fetchAllCreel();
@@ -43,9 +50,10 @@ export default class CreelList extends Component {
     return (
       <div>
         <h3>Creels </h3>
+        <CreelAddModal addNewCreel={this.addNewCreel} {...this.props} />
         {this.state.creel.map(creel => {
           return (
-            <FishList
+            <CreelCard
               key={creel.id}
               creel={creel}
               editCreel={this.editCreel}
@@ -54,6 +62,16 @@ export default class CreelList extends Component {
             />
           );
         })}
+        {/* {this.state.creel.map(creel => {
+          return (
+            <FishList
+              key={creel.id}
+              creel={creel}
+              editCreel={this.editCreel}
+              deleteCreel={this.deleteCreel}
+              {...this.props}
+            />
+          ); */}
       </div>
     );
   }
