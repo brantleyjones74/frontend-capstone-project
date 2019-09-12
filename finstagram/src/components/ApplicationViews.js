@@ -47,12 +47,25 @@ class ApplicationViews extends Component {
           }}
         />
 
-        {/* Routes to fish */}
+        {/* <Route
+          exact
+          path="/creels/:creelId(\d+)"
+          render={props => {
+            return (
+              <CreelDetail
+                creelId={parseInt(props.match.params.creelId)}
+                {...props}
+              />
+            );
+          }}
+        /> */}
+
+        {/* Routes to all fish in a specific creel */}
         <Route
           exact
-          path="/fish"
+          path="/creels/:creelId(\d+)"
           render={props => {
-            return <FishList activeUser={this.activeUser} {...props} />;
+            return <FishList activeUser={this.activeUser} {...props} creelId={parseInt(props.match.params.creelId)} />;
           }}
         />
       </React.Fragment>

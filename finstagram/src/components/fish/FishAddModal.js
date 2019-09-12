@@ -91,8 +91,10 @@ export default class FishAddModal extends React.Component {
             weight: this.state.fishWeight,
             lure: this.state.fishLure,
             catchOfDay: this.state.catchOfDay,
+            photoUrl: url,
             timeStamp: this.state.timeStamp,
-            photoUrl: url
+            creelId: this.props.creelId,
+            userId: this.props.activeUser()
           };
           // adds the new fish to the json database && closes the modal w/ toggle function
           this.props.addNewFish(fish).then(() => this.toggle());
@@ -107,6 +109,7 @@ export default class FishAddModal extends React.Component {
         lure: this.state.fishLure,
         catchOfDay: this.state.catchOfDay,
         timeStamp: this.state.timeStamp,
+        creelId: this.props.creelId,
         photoUrl: ""
       };
       // adds the new fish to the API && closes the modal w/ toggle function
