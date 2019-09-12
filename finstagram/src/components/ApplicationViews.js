@@ -8,6 +8,10 @@ import Welcome from "./welcome/Welcome";
 import Register from "./auth/Register";
 // import Login component
 import Login from "./auth/Login";
+// import CreelList component
+import CreelList from "./creel/CreelList";
+// import FishList component
+import FishList from "./fish/FishList";
 
 class ApplicationViews extends Component {
   // function that checks to see if the user is logged in and stored in session storage
@@ -31,6 +35,24 @@ class ApplicationViews extends Component {
             } else {
               return <Welcome />;
             }
+          }}
+        />
+
+        {/* Routes to creel lists */}
+        <Route
+          exact
+          path="/creels"
+          render={props => {
+            return <CreelList activeUser={this.activeUser} {...props} />;
+          }}
+        />
+
+        {/* Routes to fish */}
+        <Route
+          exact
+          path="/fish"
+          render={props => {
+            return <FishList activeUser={this.activeUser} {...props} />;
           }}
         />
       </React.Fragment>
