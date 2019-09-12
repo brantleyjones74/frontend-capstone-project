@@ -12,6 +12,8 @@ import Login from "./auth/Login";
 import CreelList from "./creel/CreelList";
 // import FishList component
 import FishList from "./fish/FishList";
+// import ProfileList component
+import ProfileList from "./profile/ProfileList";
 
 class ApplicationViews extends Component {
   // function that checks to see if the user is logged in and stored in session storage
@@ -31,7 +33,7 @@ class ApplicationViews extends Component {
           path="/"
           render={props => {
             if (this.isUserAuthenticated()) {
-              return <Home />;
+              return <Home activeUser={this.activeUser} {...props} />;
             } else {
               return <Welcome />;
             }
@@ -47,25 +49,26 @@ class ApplicationViews extends Component {
           }}
         />
 
-        {/* <Route
+        <Route
           exact
-          path="/creels/:creelId(\d+)"
+          path="/profiles"
           render={props => {
-            return (
-              <CreelDetail
-                creelId={parseInt(props.match.params.creelId)}
-                {...props}
-              />
-            );
+            return <ProfileList activeUser={this.activeUser} {...props} />;
           }}
-        /> */}
+        />
 
         {/* Routes to all fish in a specific creel */}
         <Route
           exact
           path="/creels/:creelId(\d+)"
           render={props => {
-            return <FishList activeUser={this.activeUser} {...props} creelId={parseInt(props.match.params.creelId)} />;
+            return (
+              <FishList
+                activeUser={this.activeUser}
+                {...props}
+                creelId={parseInt(props.match.params.creelId)}
+              />
+            );
           }}
         />
       </React.Fragment>
