@@ -23,6 +23,8 @@ export default class ProfileCard extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props.activeUser());
+    console.log(this.props.userId);
     UserManager.getUsers(this.props.userId).then(user => {
       this.setState({
         firstName: user.firstName,
@@ -30,6 +32,8 @@ export default class ProfileCard extends Component {
         username: user.username,
         city: user.city,
         state: user.state
+        // bio: bio.state,
+        // photoUrl: photoUrl.state
       });
     });
   }
