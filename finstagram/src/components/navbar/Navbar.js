@@ -42,12 +42,12 @@ export default class NavBar extends React.Component {
                 <NavLink href="/creels">Creels</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/profiles">Profiles</NavLink>
+                <NavLink href="/users">Users</NavLink>
               </NavItem>
               <NavItem>
-                <Button onClick={this.logoutUser}>
-                  <Link to="/">Logout</Link>
-                </Button>
+                <Link to="/">
+                  <Button onClick={this.logoutUser}>Logout</Button>
+                </Link>
               </NavItem>
             </Nav>
           </Collapse>
