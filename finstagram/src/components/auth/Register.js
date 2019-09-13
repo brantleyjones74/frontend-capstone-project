@@ -10,6 +10,8 @@ class Register extends React.Component {
   state = {
     email: "",
     username: "",
+    firstName: "",
+    lastName: "",
     password: "",
     city: "",
     state: "",
@@ -49,6 +51,8 @@ class Register extends React.Component {
             // creates new object to pass through API method
             email: this.state.email,
             username: this.state.username,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
             city: this.state.city,
             state: this.state.state,
             password: this.state.password
@@ -85,8 +89,31 @@ class Register extends React.Component {
           />
         </FormGroup>
         <FormGroup>
+          <Label for="firstName">First Name</Label>
+          <Input
+            onChange={this.inputFieldHandler}
+            type="text"
+            name="firstName"
+            id="firstName"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="lastName">Last Name</Label>
+          <Input
+            onChange={this.inputFieldHandler}
+            type="text"
+            name="lastName"
+            id="lastName"
+          />
+        </FormGroup>
+        <FormGroup>
           <Label for="city">City</Label>
-          <Input type="text" name="city" id="city" />
+          <Input
+            onChange={this.inputFieldHandler}
+            type="text"
+            name="city"
+            id="city"
+          />
         </FormGroup>
         <FormGroup>
           <Label for="state">State</Label>
