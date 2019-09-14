@@ -1,21 +1,38 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-// import Register from "../auth/Register";
+import { Container, Row, Col } from "reactstrap";
+import "../welcome/Welcome.css";
 
 class Welcome extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <h1>Welcome To Finstagram</h1>
-        </div>
-        <section>
-          <Link to="/register">Register</Link>
-        </section>
-        or
-        <section>
-          <Link to="/login">Login</Link>
-        </section>
+        <Container id="welcomeContainer">
+          <Row>
+            <Col className="welcomePage">
+              <h1 id="header">Welcome To Finstagram</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="welcomePage">
+              <Link to="/register">
+                <p>Register</p>
+              </Link>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="welcomePage">
+              <p>or</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="welcomePage">
+              <Link to="/login">
+                <p>Login</p>
+              </Link>
+            </Col>
+          </Row>
+        </Container>
       </React.Fragment>
     );
   }

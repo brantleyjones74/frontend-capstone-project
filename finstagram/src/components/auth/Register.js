@@ -1,8 +1,17 @@
 // Purpose: handles the registration of a new user.
 
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Container
+} from "reactstrap";
 import Authentication from "../../modules/AuthenticationManager";
+import "../auth/Register.css";
 
 // register form imported from ReactStrap. Modified for Finstagram.
 class Register extends React.Component {
@@ -69,133 +78,183 @@ class Register extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleRegistration}>
-        <FormGroup>
-          <Label for="email">Email</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="email"
-            name="email"
-            id="email"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="text"
-            name="username"
-            id="username"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="firstName">First Name</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="text"
-            name="firstName"
-            id="firstName"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="lastName">Last Name</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="text"
-            name="lastName"
-            id="lastName"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="city">City</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="text"
-            name="city"
-            id="city"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="state">State</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="select"
-            name="state"
-            id="state"
-          >
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">D.C.</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM<">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="password"
-            name="password"
-            id="password"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="confirmPassword">Confirm Password</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-          />
-        </FormGroup>
-        <Button type="submit">Register</Button>
-      </Form>
+      <React.Fragment>
+        <Container id="formContainer">
+          <Container id="inputContainer">
+            <Form>
+              <FormGroup row>
+                <Label sm={4} for="email">
+                  Email
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="email"
+                    name="email"
+                    id="email"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="username">
+                  Username
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="username"
+                    id="username"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="firstName">
+                  First Name
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="lastName">
+                  Last Name
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="city">
+                  City
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="city"
+                    id="city"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="state">
+                  State
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="select"
+                    name="state"
+                    id="state"
+                  >
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">D.C.</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM<">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                  </Input>
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="password">
+                  Password
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="password"
+                    name="password"
+                    id="password"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="confirmPassword">
+                  Confirm Password
+                </Label>
+                <Col>
+                  <Input
+                    className="registerInputs"
+                    onChange={this.inputFieldHandler}
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                  />
+                </Col>
+              </FormGroup>
+            </Form>
+          </Container>
+          <Container id="registerBtnContainer">
+            <Button id="registerBtn" onClick={this.handleRegistration}>
+              Register
+            </Button>
+          </Container>
+        </Container>
+      </React.Fragment>
     );
   }
 }
