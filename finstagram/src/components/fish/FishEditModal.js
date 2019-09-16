@@ -28,7 +28,7 @@ export default class FishEditModal extends React.Component {
       catchOfDay: false,
       photo: "",
       creelId: "",
-      timeStamp: Date.now()
+      timeStamp: ""
     };
 
     this.toggle = this.toggle.bind(this);

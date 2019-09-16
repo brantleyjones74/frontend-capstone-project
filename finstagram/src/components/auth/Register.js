@@ -4,11 +4,11 @@ import React from "react";
 import {
   Button,
   Col,
+  Container,
   Form,
   FormGroup,
   Label,
   Input,
-  Container
 } from "reactstrap";
 import Authentication from "../../modules/AuthenticationManager";
 import "../auth/Register.css";

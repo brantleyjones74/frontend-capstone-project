@@ -6,12 +6,15 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
-  Form,
-  FormGroup
+  // Label,
+  Form
+  // FormGroup
 } from "reactstrap";
+import * as firebase from "firebase/app";
+import "firebase/storage";
+import UserManager from "../../modules/UserManager";
 
-export default class ProfileAddBioModal extends React.Component {
+export default class ProfileEditModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +27,8 @@ export default class ProfileAddBioModal extends React.Component {
       city: "",
       state: "",
       bio: "",
-      photoUrl: ""
+      photoUrl: "",
+      timeStamp: ""
     };
 
     this.toggle = this.toggle.bind(this);
@@ -48,17 +52,29 @@ export default class ProfileAddBioModal extends React.Component {
     this.setState(stateChange);
   };
 
+  componentDidMount() {
+    UserManager.getUsers(this.props.activeUser()).then(user => {
+      this.setState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        city: user.city,
+        state: user.state,
+        bio: user.bio,
+        photoUrl: user.photoUrl,
+        timeStamp: Date.now()
+      });
+    });
+  }
+
   updateProfile = evt => {
+    console.log("update the profile");
     evt.preventDefault();
-    if (this.state.username === "") {
-      window.alert("Please fill out a username.");
-    } else if (typeof this.state.photo === "object") {
+    if (typeof this.state.photoUrl === "object") {
       const imagesRef = firebase.storage().ref("images");
-      const childRef = imagesRef.child(
-        `${this.state.fishSpecies}-${Date.now()}`
-      );
+      const childRef = imagesRef.child(`${this.state.username}-${Date.now()}`);
       childRef
-        .put(this.state.photo)
+        .put(this.state.photoUrl)
         .then(response => response.ref.getDownloadURL())
         .then(url => {
           const editedProfile = {
@@ -68,10 +84,11 @@ export default class ProfileAddBioModal extends React.Component {
             city: this.state.city,
             state: this.state.state,
             bio: this.state.bio,
-            photoUrl: this.state.photoUrl
+            photoUrl: url,
+            timeStamp: this.state.timeStamp
           };
           this.props
-            .editFish(editedProfile, this.props.user.id)
+            .editUser(editedProfile, this.props.activeUser())
             .then(() => this.toggle());
         });
     } else {
@@ -82,10 +99,11 @@ export default class ProfileAddBioModal extends React.Component {
         city: this.state.city,
         state: this.state.state,
         bio: this.state.bio,
-        photoUrl: this.state.photoUrl
+        photoUrl: this.state.photoUrl,
+        timeStamp: this.state.timeStamp
       };
       this.props
-        .editProfile(editedProfile, this.props.user.id)
+        .editUser(editedProfile, this.props.activeUser())
         .then(() => this.toggle());
     }
   };
@@ -94,20 +112,8 @@ export default class ProfileAddBioModal extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <FormGroup>
-            <Label for="unmountOnClose">UnmountOnClose value</Label>{" "}
-            <Input
-              type="select"
-              name="unmountOnClose"
-              id="unmountOnClose"
-              onChange={this.changeUnmountOnClose}
-            >
-              <option value="true">true</option>
-              <option value="false">false</option>
-            </Input>
-          </FormGroup>{" "}
           <Button color="danger" onClick={this.toggle}>
-            {this.props.buttonLabel}
+            Edit Profile
           </Button>
         </Form>
         <Modal
@@ -116,16 +122,24 @@ export default class ProfileAddBioModal extends React.Component {
           className={this.props.className}
           unmountOnClose={this.state.unmountOnClose}
         >
-          <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={this.toggle}>Edit Profile</ModalHeader>
           <ModalBody>
+            Bio:
             <Input
+              id="bio"
               type="textarea"
-              placeholder="Write something (data should remain in modal if unmountOnClose is set to false)"
-              rows={5}
+              onChange={this.inputFieldHandler}
+              defaultValue={this.state.bio}
+            />
+            Image:
+            <Input
+              id="photoUrl"
+              type="file"
+              onChange={e => this.setState({ photoUrl: e.target.files[0] })}
             />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>
+            <Button color="primary" onClick={this.updateProfile}>
               Do Something
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import { Button, Container, Card, CardTitle, CardText } from "reactstrap";
 
 export default class ProfileCard extends React.Component {
-  state = {};
-
   render() {
     return (
       <Container>
@@ -18,7 +16,7 @@ export default class ProfileCard extends React.Component {
           <CardText>
             Location: {this.props.users.city}, {this.props.users.state}
           </CardText>
-          <Link to={`/users/${this.props.users.id}`}>
+          <Link {...this.props} to={`/users/${this.props.users.id}`}>
             <Button>View Profile</Button>
           </Link>
           <Button>Follow</Button>
