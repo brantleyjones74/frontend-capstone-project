@@ -21,6 +21,7 @@ class ApplicationViews extends Component {
   isUserAuthenticated = () => sessionStorage.getItem("activeUser") !== null;
   // function that converts the activeUser value in session storage to an integer
   activeUser = () => parseInt(sessionStorage.getItem("activeUser"));
+  userpage = true;
 
   render() {
     return (
@@ -34,7 +35,13 @@ class ApplicationViews extends Component {
           path="/"
           render={props => {
             if (this.isUserAuthenticated()) {
-              return <Home activeUser={this.activeUser} {...props} />;
+              return (
+                <Home
+                  activeUser={this.activeUser}
+                  userpage={this.userpage}
+                  {...props}
+                />
+              );
             } else {
               return <Welcome />;
             }
@@ -46,7 +53,13 @@ class ApplicationViews extends Component {
           exact
           path="/creels"
           render={props => {
-            return <CreelList activeUser={this.activeUser} {...props} />;
+            return (
+              <CreelList
+                userpage={this.userpage}
+                activeUser={this.activeUser}
+                {...props}
+              />
+            );
           }}
         />
 
