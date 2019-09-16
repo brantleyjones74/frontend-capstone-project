@@ -2,7 +2,7 @@
 
 import React from "react";
 import { ListGroup } from "reactstrap";
-import ProfileCard from "./ProfileCard";
+import ProfileListView from "./ProfileListView";
 import UserManager from "../../modules/UserManager";
 
 export default class Example extends React.Component {
@@ -28,7 +28,7 @@ export default class Example extends React.Component {
         <h3>Users </h3>
         <ListGroup>
           {this.state.users.map(users => {
-            return <ProfileCard key={users.id} users={users} {...this.props} />;
+            return <ProfileListView key={users.id} users={users} />;
           })}
         </ListGroup>
       </div>

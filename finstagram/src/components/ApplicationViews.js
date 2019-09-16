@@ -14,6 +14,7 @@ import CreelList from "./creel/CreelList";
 import FishList from "./fish/FishList";
 // import ProfileList component
 import ProfileList from "./profile/ProfileList";
+import ProfileCard from "./profile/ProfileCard";
 
 class ApplicationViews extends Component {
   // function that checks to see if the user is logged in and stored in session storage
@@ -51,7 +52,7 @@ class ApplicationViews extends Component {
 
         <Route
           exact
-          path="/profiles"
+          path="/users"
           render={props => {
             return <ProfileList activeUser={this.activeUser} {...props} />;
           }}
@@ -67,6 +68,20 @@ class ApplicationViews extends Component {
                 activeUser={this.activeUser}
                 {...props}
                 creelId={parseInt(props.match.params.creelId)}
+              />
+            );
+          }}
+        />
+
+        <Route
+          exact
+          path="/users/:userId(\d+)"
+          render={props => {
+            return (
+              <ProfileCard
+                activeUser={this.activeUser}
+                {...props}
+                userId={parseInt(props.match.params.userId)}
               />
             );
           }}

@@ -13,6 +13,16 @@ export default {
     return fetch(`${jsonServerURL}/users`).then(response => response.json());
   },
 
+  updateUser(editedUserObj, editedUserId) {
+    return fetch(`${jsonServerURL}/users/${editedUserId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedUserObj)
+    }).then(response => response.json());
+  },
+
   deleteUser(id) {
     return fetch(`${jsonServerURL}/users/${id}`, {
       method: "DELETE"

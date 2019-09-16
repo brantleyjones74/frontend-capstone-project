@@ -1,21 +1,69 @@
-// Purpose: Display user data on a profile page.
+import React, { Component } from "react";
+// import { Link } from "react-router-dom";
+import {
+  Card,
+  CardImg,
+  // Button,
+  CardTitle,
+  CardText,
+  Row,
+  Col
+} from "reactstrap";
+import UserManager from "../../modules/UserManager";
 
-import React from "react";
-import { Container, Card, CardTitle, CardText } from "reactstrap";
+export default class ProfileCard extends Component {
+  state = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    city: "",
+    state: "",
+    bio: "",
+    photoUrl: ""
+  };
 
-export default class ProfileCard extends React.Component {
-  state = {};
+  fetchActiveUser = () => {
+    UserManager.getUsers(this.props.userId).then(user => {
+      this.setState({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        city: user.city,
+        state: user.state,
+        bio: user.bio,
+        photoUrl: user.photoUrl
+      });
+    });
+  };
+
+  componentDidMount() {
+    this.fetchActiveUser();
+  }
+
+  editUser = (obj, id) => {
+    console.log(obj);
+    return UserManager.updateUser(obj, id).then(() => {
+      this.fetchActiveUser();
+    });
+  };
 
   render() {
     return (
-      <Container>
-        <Card>
-          <CardTitle>
-            {this.props.users.firstName} {this.props.users.lastName}
-          </CardTitle>
-          <CardText>Username: {this.props.users.username}</CardText>
-        </Card>
-      </Container>
+      <Row>
+        <Col sm="6">
+          <Card body>
+            <CardImg src={this.state.photoUrl}></CardImg>
+            <CardTitle className="text-danger">{this.state.username}</CardTitle>
+            <CardText className="text-danger">
+              {this.state.firstName} {this.state.lastName}
+              <br />
+              {this.state.city}, {this.state.state}
+              <br />
+              {this.state.bio}
+            </CardText>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }

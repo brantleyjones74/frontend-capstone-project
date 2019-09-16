@@ -1,7 +1,16 @@
 // Purpose: handles the login functionality for an existing user.
 
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Label,
+  Input
+} from "reactstrap";
+import "../auth/Login.css";
 import Authentication from "../../modules/AuthenticationManager";
 
 // login form imported from ReactStrap. Modified for Finstagram.
@@ -55,29 +64,45 @@ class Login extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.handleLogin}>
-        <FormGroup>
-          <Label for="username">Username</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="text"
-            name="username"
-            id="loginUsername"
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            onChange={this.inputFieldHandler}
-            type="password"
-            name="password"
-            id="loginPassword"
-          />
-        </FormGroup>
-        <Button id="loginButton" type="submit">
-          Login
-        </Button>
-      </Form>
+      <React.Fragment>
+        <Container id="formContainer">
+          <Container id="inputContainer">
+            <Form>
+              <FormGroup row>
+                <Label sm={4} for="username">
+                  Username
+                </Label>
+                <Col>
+                  <Input
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="username"
+                    id="loginUsername"
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label sm={4} for="password">
+                  Password
+                </Label>
+                <Col>
+                  <Input
+                    onChange={this.inputFieldHandler}
+                    type="password"
+                    name="password"
+                    id="loginPassword"
+                  />
+                </Col>
+              </FormGroup>
+            </Form>
+          </Container>
+          <Container id="loginBtnContainer">
+            <Button onClick={this.handleLogin} id="loginBtn" type="submit">
+              Login
+            </Button>
+          </Container>
+        </Container>
+      </React.Fragment>
     );
   }
 }
