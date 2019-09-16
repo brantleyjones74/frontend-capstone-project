@@ -112,7 +112,7 @@ export default class ProfileEditModal extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="danger" onClick={this.toggle}>
+          <Button color="primary" onClick={this.toggle}>
             Edit Profile
           </Button>
         </Form>

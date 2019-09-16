@@ -2,14 +2,13 @@ import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import {
   Card,
-  // CardImg,
+  CardImg,
   // Button,
   CardTitle,
   CardText,
   Row,
   Col
 } from "reactstrap";
-import ProfileEditModal from "../profile/ProfileEditModal";
 import UserManager from "../../modules/UserManager";
 
 export default class ProfileCard extends Component {
@@ -24,7 +23,7 @@ export default class ProfileCard extends Component {
   };
 
   fetchActiveUser = () => {
-    UserManager.getUsers(this.props.activeUser()).then(user => {
+    UserManager.getUsers(this.props.userId).then(user => {
       this.setState({
         firstName: user.firstName,
         lastName: user.lastName,
@@ -42,6 +41,7 @@ export default class ProfileCard extends Component {
   }
 
   editUser = (obj, id) => {
+    console.log(obj);
     return UserManager.updateUser(obj, id).then(() => {
       this.fetchActiveUser();
     });
@@ -52,7 +52,7 @@ export default class ProfileCard extends Component {
       <Row>
         <Col sm="6">
           <Card body>
-            <ProfileEditModal editUser={this.editUser} {...this.props} />
+            <CardImg src={this.state.photoUrl}></CardImg>
             <CardTitle className="text-danger">{this.state.username}</CardTitle>
             <CardText className="text-danger">
               {this.state.firstName} {this.state.lastName}

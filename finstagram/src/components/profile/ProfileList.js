@@ -28,14 +28,7 @@ export default class Example extends React.Component {
         <h3>Users </h3>
         <ListGroup>
           {this.state.users.map(users => {
-            return (
-              <ProfileListView
-                key={users.id}
-                users={users}
-                editUser={this.editUser}
-                {...this.props}
-              />
-            );
+            return <ProfileListView key={users.id} users={users} />;
           })}
         </ListGroup>
       </div>

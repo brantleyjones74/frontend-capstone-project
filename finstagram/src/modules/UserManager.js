@@ -14,7 +14,7 @@ export default {
   },
 
   updateUser(editedUserObj, editedUserId) {
-    return fetch(`${jsonServerURL}/creel/${editedUserId}`, {
+    return fetch(`${jsonServerURL}/users/${editedUserId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
