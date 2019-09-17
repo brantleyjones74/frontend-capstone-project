@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
+import CreelList from "../creel/CreelList";
 
 export default class ProfileCard extends Component {
   state = {
@@ -48,24 +49,31 @@ export default class ProfileCard extends Component {
     });
   };
 
+  userpage = false;
+
   render() {
     return (
-      <Row>
-        <Col sm="6">
-          <Card body>
-            <ProfileEditModal editUser={this.editUser} {...this.props} />
-            <CardImg src={this.state.photoUrl}></CardImg>
-            <CardTitle className="text-danger">{this.state.username}</CardTitle>
-            <CardText className="text-danger">
-              {this.state.firstName} {this.state.lastName}
-              <br />
-              {this.state.city}, {this.state.state}
-              <br />
-              {this.state.bio}
-            </CardText>
-          </Card>
-        </Col>
-      </Row>
+      <React.Fragment>
+        <Row>
+          <Col sm="6">
+            <Card body>
+              <ProfileEditModal editUser={this.editUser} {...this.props} />
+              <CardImg src={this.state.photoUrl}></CardImg>
+              <CardTitle className="text-danger">
+                {this.state.username}
+              </CardTitle>
+              <CardText className="text-danger">
+                {this.state.firstName} {this.state.lastName}
+                <br />
+                {this.state.city}, {this.state.state}
+                <br />
+                {this.state.bio}
+              </CardText>
+            </Card>
+          </Col>
+        </Row>
+        <CreelList {...this.props} />
+      </React.Fragment>
     );
   }
 }

@@ -10,6 +10,7 @@ import {
   NavLink,
   Button
 } from "reactstrap";
+import Logo from "../images/Finstagram.png";
 
 export default class NavBar extends React.Component {
   constructor(props) {
@@ -34,7 +35,9 @@ export default class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Finstagram</NavbarBrand>
+          <NavbarBrand href="/">
+            <img src={Logo}></img>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

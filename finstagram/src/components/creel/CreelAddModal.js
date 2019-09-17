@@ -14,7 +14,7 @@ import {
 } from "reactstrap";
 import "firebase/storage";
 
-export default class FishAddModal extends React.Component {
+export default class CreelAddModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

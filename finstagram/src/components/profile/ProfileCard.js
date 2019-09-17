@@ -10,6 +10,7 @@ import {
   Col
 } from "reactstrap";
 import UserManager from "../../modules/UserManager";
+import CreelList from "../creel/CreelList";
 
 export default class ProfileCard extends Component {
   state = {
@@ -47,23 +48,35 @@ export default class ProfileCard extends Component {
     });
   };
 
+  userpage = false;
+
   render() {
     return (
-      <Row>
-        <Col sm="6">
-          <Card body>
-            <CardImg src={this.state.photoUrl}></CardImg>
-            <CardTitle className="text-danger">{this.state.username}</CardTitle>
-            <CardText className="text-danger">
-              {this.state.firstName} {this.state.lastName}
-              <br />
-              {this.state.city}, {this.state.state}
-              <br />
-              {this.state.bio}
-            </CardText>
-          </Card>
-        </Col>
-      </Row>
+      <React.Fragment>
+        <Row>
+          <Col sm="6">
+            <Card body>
+              <CardImg src={this.state.photoUrl}></CardImg>
+              <CardTitle className="text-danger">
+                {this.state.username}
+              </CardTitle>
+              <CardText className="text-danger">
+                {this.state.firstName} {this.state.lastName}
+                <br />
+                {this.state.city}, {this.state.state}
+                <br />
+                {this.state.bio}
+              </CardText>
+            </Card>
+          </Col>
+        </Row>
+        <div>
+          <CreelList
+            userpage={this.props.userpage}
+            {...this.props}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 }

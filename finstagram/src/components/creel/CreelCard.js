@@ -26,10 +26,28 @@ export default class FishCard extends Component {
             <Link to={`/creels/${this.props.creel.id}`}>
               <Button>Details</Button>
             </Link>
-            <CreelEditModal {...this.props} />
-            <Button onClick={() => this.props.deleteCreel(this.props.creel.id)}>
-              Delete
-            </Button>
+
+            {this.props.userpage ? (
+              <React.Fragment>
+                <CreelEditModal {...this.props} />
+                <Button
+                  onClick={() => this.props.deleteCreel(this.props.creel.id)}
+                >
+                  Delete
+                </Button>
+              </React.Fragment>
+            ) : this.props.userId === this.props.activeUser() ? (
+              <React.Fragment>
+                <CreelEditModal {...this.props} />
+                <Button
+                  onClick={() => this.props.deleteCreel(this.props.creel.id)}
+                >
+                  Delete
+                </Button>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
           </Card>
         </Col>
       </Row>
