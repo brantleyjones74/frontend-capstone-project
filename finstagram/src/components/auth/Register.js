@@ -87,7 +87,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="email">
                   Email
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
@@ -103,7 +103,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="username">
                   Username
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     onChange={this.inputFieldHandler}
@@ -118,7 +118,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="firstName">
                   First Name
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
@@ -134,7 +134,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="lastName">
                   Last Name
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
@@ -150,7 +150,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="city">
                   City
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
@@ -166,10 +166,10 @@ export default class Register extends React.Component {
                 <Label sm={4} for="state">
                   State
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
-                    //
+                    // inject inputFieldHandler method into the input. This will update state when the value changes
                     onChange={this.inputFieldHandler}
                     type="select"
                     name="state"
@@ -235,7 +235,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="password">
                   Password
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
@@ -251,7 +251,7 @@ export default class Register extends React.Component {
                 <Label sm={4} for="confirmPassword">
                   Confirm Password
                 </Label>
-                <Col>
+                <Col sm={8}>
                   <Input
                     className="registerInputs"
                     // inject inputFieldHandler method into the input. This will update state when the value changes
