@@ -12,7 +12,6 @@ import {
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
-import CreelAddModal from "../creel/CreelAddModal";
 
 export default class ProfileCard extends Component {
   state = {

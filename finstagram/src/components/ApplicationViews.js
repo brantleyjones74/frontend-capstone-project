@@ -12,7 +12,7 @@ import Login from "./auth/Login";
 import CreelList from "./creel/CreelList";
 // import FishList component
 import FishList from "./fish/FishList";
-// import ProfileList component
+// import Profile components
 import ProfileList from "./profile/ProfileList";
 import ProfileCard from "./profile/ProfileCard";
 
@@ -21,6 +21,7 @@ class ApplicationViews extends Component {
   isUserAuthenticated = () => sessionStorage.getItem("activeUser") !== null;
   // function that converts the activeUser value in session storage to an integer
   activeUser = () => parseInt(sessionStorage.getItem("activeUser"));
+  // if true it's the active user's data, if false it will only display other users info
   userpage = true;
 
   render() {
@@ -39,6 +40,7 @@ class ApplicationViews extends Component {
                 <Home
                   activeUser={this.activeUser}
                   userpage={this.userpage}
+                  userId={parseInt(props.match.params.userId)}
                   {...props}
                 />
               );
