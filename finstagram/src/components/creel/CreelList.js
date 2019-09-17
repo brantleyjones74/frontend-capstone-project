@@ -53,6 +53,8 @@ export default class CreelList extends Component {
     });
   };
 
+  userpage = false;
+
   render() {
     if (this.props.userpage) {
       return (
@@ -62,6 +64,7 @@ export default class CreelList extends Component {
           {this.state.creel.map(creel => {
             return (
               <CreelCard
+                userpage={this.props.userpage}
                 key={creel.id}
                 creel={creel}
                 editCreel={this.editCreel}

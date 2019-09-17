@@ -1,19 +1,14 @@
+// Purpose: Displays the details of the active user.
+// Similar to ProfileCard. Refactor to inject ProfileCard???
+
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-import {
-  Card,
-  CardImg,
-  // Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
 
 export default class ProfileCard extends Component {
+  // set initial state
   state = {
     firstName: "",
     lastName: "",
@@ -24,8 +19,9 @@ export default class ProfileCard extends Component {
     photoUrl: ""
   };
 
+  // fetches the user's data for the specific card. Set state with data from API call
   fetchActiveUser = () => {
-    UserManager.getUsers(this.props.activeUser()).then(user => {
+    UserManager.getUser(this.props.activeUser()).then(user => {
       this.setState({
         firstName: user.firstName,
         lastName: user.lastName,
@@ -42,6 +38,7 @@ export default class ProfileCard extends Component {
     this.fetchActiveUser();
   }
 
+  // edit user method passing new user obj and id through function. then fetch updated data.
   editUser = (obj, id) => {
     console.log(obj);
     return UserManager.updateUser(obj, id).then(() => {
@@ -49,6 +46,7 @@ export default class ProfileCard extends Component {
     });
   };
 
+  // sets userpage to false. use this to hide buttons for user that's not logged in.
   userpage = false;
 
   render() {
@@ -57,6 +55,7 @@ export default class ProfileCard extends Component {
         <Row>
           <Col sm="6">
             <Card body>
+              {/* inject ProfileEditModal. pass edit user function to it. */}
               <ProfileEditModal editUser={this.editUser} {...this.props} />
               <CardImg src={this.state.photoUrl}></CardImg>
               <CardTitle className="text-danger">
@@ -72,6 +71,7 @@ export default class ProfileCard extends Component {
             </Card>
           </Col>
         </Row>
+        {/* inject CreelList component */}
         <CreelList {...this.props} />
       </React.Fragment>
     );

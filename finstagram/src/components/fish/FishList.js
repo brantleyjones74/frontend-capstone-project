@@ -47,13 +47,21 @@ export default class FishList extends Component {
     });
   };
 
+  userpage = false;
+
   render() {
     return (
       <React.Fragment>
         <section>
           {/* inject the add fish modal and pass addNewFish and props to it */}
           {/* creelId is passed through props */}
-          <FishAddModal addNewFish={this.addNewFish} {...this.props} />
+          {this.props.userpage ? (
+            <FishAddModal addNewFish={this.addNewFish} {...this.props} />
+          ) : this.props.userId === this.props.activeUser() ? (
+            <FishAddModal addNewFish={this.addNewFish} {...this.props} />
+          ) : (
+            ""
+          )}
         </section>
         <div>
           <h3>Fishes </h3>
@@ -63,6 +71,7 @@ export default class FishList extends Component {
               {this.state.fish.map(fish => {
                 return (
                   <FishCard
+                    userpage={this.props.userpage}
                     // id of fish being displayed
                     key={fish.id}
                     // passes fish down to props

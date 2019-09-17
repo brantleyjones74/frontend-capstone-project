@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import "../welcome/Welcome.css";
 
-class Welcome extends Component {
+export default class Welcome extends Component {
   render() {
     return (
       <React.Fragment>
@@ -37,5 +37,3 @@ class Welcome extends Component {
     );
   }
 }
-
-export default Welcome;

@@ -3,7 +3,7 @@
 const jsonServerURL = "http://localhost:5002";
 
 export default {
-  getUsers(id) {
+  getUser(id) {
     return fetch(`${jsonServerURL}/users/${id}`).then(response =>
       response.json()
     );
