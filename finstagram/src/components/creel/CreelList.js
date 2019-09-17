@@ -56,27 +56,7 @@ export default class CreelList extends Component {
   userpage = false;
 
   render() {
-    if (this.props.userpage) {
-      return (
-        <div>
-          <h3>Creels </h3>
-          <CreelAddModal addNewCreel={this.addNewCreel} {...this.props} />
-          {this.state.creel.map(creel => {
-            return (
-              <CreelCard
-                userpage={this.props.userpage}
-                key={creel.id}
-                creel={creel}
-                editCreel={this.editCreel}
-                deleteCreel={this.deleteCreel}
-                {...this.props}
-              />
-            );
-          })}
-        </div>
-      );
-    } else {
-      if (this.props.userId === this.props.activeUser()) {
+      if (this.props.userpage) {
         return (
           <div>
             <h3>Creels </h3>
@@ -84,6 +64,7 @@ export default class CreelList extends Component {
             {this.state.creel.map(creel => {
               return (
                 <CreelCard
+                  userpage={this.props.userpage}
                   key={creel.id}
                   creel={creel}
                   editCreel={this.editCreel}
@@ -95,23 +76,42 @@ export default class CreelList extends Component {
           </div>
         );
       } else {
-        return (
-          <div>
-            <h3>Creels </h3>
-            {this.state.creel.map(creel => {
-              return (
-                <CreelCard
-                  key={creel.id}
-                  creel={creel}
-                  editCreel={this.editCreel}
-                  deleteCreel={this.deleteCreel}
-                  {...this.props}
-                />
-              );
-            })}
-          </div>
-        );
+        if (this.props.userId === this.props.activeUser()) {
+          return (
+            <div>
+              <h3>Creels </h3>
+              <CreelAddModal addNewCreel={this.addNewCreel} {...this.props} />
+              {this.state.creel.map(creel => {
+                return (
+                  <CreelCard
+                    key={creel.id}
+                    creel={creel}
+                    editCreel={this.editCreel}
+                    deleteCreel={this.deleteCreel}
+                    {...this.props}
+                  />
+                );
+              })}
+            </div>
+          );
+        } else {
+          return (
+            <div>
+              <h3>Creels </h3>
+              {this.state.creel.map(creel => {
+                return (
+                  <CreelCard
+                    key={creel.id}
+                    creel={creel}
+                    editCreel={this.editCreel}
+                    deleteCreel={this.deleteCreel}
+                    {...this.props}
+                  />
+                );
+              })}
+            </div>
+          );
+        }
       }
-    }
   }
 }

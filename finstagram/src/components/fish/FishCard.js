@@ -11,9 +11,21 @@ import {
   Col
 } from "reactstrap";
 import FishEditModal from "./FishEditModal";
+import FishManager from "../../modules/FishManager";
 
-// CHANGE COLOR OF TEXT.
 export default class FishCard extends Component {
+  state = {
+    fish: {}
+  };
+
+  fetchFish = () => {
+    FishManager.getFish(this.props.fishId).then(fish => {
+      this.setState({
+        fish: fish
+      });
+    });
+  };
+
   render() {
     return (
       <Row>
@@ -30,16 +42,7 @@ export default class FishCard extends Component {
               <br />
               Caught with {this.props.fish.lure}{" "}
             </CardText>
-            {this.props.userpage ? (
-              <React.Fragment>
-                <FishEditModal {...this.props} />
-                <Button
-                  onClick={() => this.props.deleteFish(this.props.fish.id)}
-                >
-                  Delete Fish
-                </Button>
-              </React.Fragment>
-            ) : this.props.userId === this.props.activeUser() ? (
+            {this.state.fish.userId === this.props.activeUser() ? (
               <React.Fragment>
                 <FishEditModal {...this.props} />
                 <Button

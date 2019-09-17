@@ -73,7 +73,6 @@ export default class CreelAddModal extends React.Component {
         notes: this.state.notes,
         timeStamp: this.state.timeStamp,
         userId: this.props.activeUser(),
-        creelFishId: ""
       };
       // adds the new fish to the API && closes the modal w/ toggle function
       this.props.addNewCreel(creel).then(() => this.toggle());

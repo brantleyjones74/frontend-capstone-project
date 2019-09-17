@@ -5,11 +5,22 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 import FishCard from "./FishCard";
 import FishManager from "../../modules/FishManager";
 import FishAddModal from "./FishAddModal";
+import CreelManager from "../../modules/CreelManager";
 
 export default class FishList extends Component {
   // set initial state (fish object) to an empty array
   state = {
+    creel: {},
     fish: []
+  };
+
+  // fetch a single creel using creelId from props. update state of creel
+  fetchCreel = () => {
+    CreelManager.getCreel(this.props.creelId).then(creel => {
+      this.setState({
+        creel: creel
+      });
+    });
   };
 
   // fetch all fish for the active user. updates state to the response from the api
@@ -47,21 +58,18 @@ export default class FishList extends Component {
     });
   };
 
-  userpage = false;
+  // check if fish userId matches active user Id if they match show button if not don't show button
 
   render() {
     return (
       <React.Fragment>
         <section>
-          {/* inject the add fish modal and pass addNewFish and props to it */}
-          {/* creelId is passed through props */}
-          {this.props.userpage ? (
-            <FishAddModal addNewFish={this.addNewFish} {...this.props} />
-          ) : this.props.userId === this.props.activeUser() ? (
-            <FishAddModal addNewFish={this.addNewFish} {...this.props} />
+          {/* if else statement. if userId from creel is = to activerUser then render add fish modal */}
+          {/* {this.state.creel.userId === this.props.activeUser() ? (
           ) : (
             ""
-          )}
+          )} */}
+          <FishAddModal addNewFish={this.addNewFish} {...this.props} />
         </section>
         <div>
           <h3>Fishes </h3>

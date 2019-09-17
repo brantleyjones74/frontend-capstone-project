@@ -29,6 +29,7 @@ export default class ProfileEditModal extends React.Component {
       email: "",
       city: "",
       state: "",
+      password: "",
       bio: "",
       photoUrl: "",
       timeStamp: ""
@@ -69,6 +70,7 @@ export default class ProfileEditModal extends React.Component {
         email: user.email,
         city: user.city,
         state: user.state,
+        password: user.password,
         bio: user.bio,
         photoUrl: user.photoUrl,
         timeStamp: Date.now()
@@ -97,6 +99,7 @@ export default class ProfileEditModal extends React.Component {
             email: this.state.email,
             city: this.state.city,
             state: this.state.state,
+            password: this.state.password,
             bio: this.state.bio,
             photoUrl: url,
             timeStamp: this.state.timeStamp
@@ -115,6 +118,7 @@ export default class ProfileEditModal extends React.Component {
         email: this.state.email,
         city: this.state.city,
         state: this.state.state,
+        password: this.state.password,
         bio: this.state.bio,
         photoUrl: this.state.photoUrl,
         timeStamp: this.state.timeStamp

@@ -22,6 +22,7 @@ export default class CreelEditModal extends React.Component {
       name: "",
       date: "",
       location: "",
+      userId: "",
       notes: "",
       timeStamp: Date.now()
     };
@@ -57,7 +58,8 @@ export default class CreelEditModal extends React.Component {
         name: creel.name,
         date: creel.date,
         location: creel.location,
-        notes: creel.notes
+        notes: creel.notes,
+        userId: creel.userId
       });
     });
   }
@@ -80,7 +82,7 @@ export default class CreelEditModal extends React.Component {
         location: this.state.location,
         notes: this.state.notes,
         timeStamp: this.state.timeStamp,
-        userId: this.props.activeUser(),
+        userId: this.props.activeUser()
       };
       this.props
         .editCreel(editedCreel, this.props.creel.id)

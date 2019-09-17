@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
+import ProfileEditModal from "../profile/ProfileEditModal";
 
 export default class ProfileCard extends Component {
   // set initial state
@@ -52,6 +53,14 @@ export default class ProfileCard extends Component {
         <Row>
           <Col sm="6">
             <Card body>
+              {/* inject ProfileEditModal. pass edit user function to it. */}
+              {this.props.userpage ? (
+                <ProfileEditModal editUser={this.editUser} {...this.props} />
+              ) : this.props.userId === this.props.activeUser() ? (
+                <ProfileEditModal editUser={this.editUser} {...this.props} />
+              ) : (
+                ""
+              )}
               <CardImg src={this.state.photoUrl}></CardImg>
               <CardTitle className="text-danger">
                 {this.state.username}

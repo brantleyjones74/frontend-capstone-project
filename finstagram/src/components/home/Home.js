@@ -64,7 +64,7 @@ export default class ProfileCard extends Component {
               <CardText className="text-danger">
                 {this.state.firstName} {this.state.lastName}
                 <br />
-                {this.state.city}, {this.state.state}
+                {this.state.city}{this.state.state}
                 <br />
                 {this.state.bio}
               </CardText>
