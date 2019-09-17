@@ -34,6 +34,7 @@ export default class FishList extends Component {
 
   // mounts component to the page and displays state.
   componentDidMount() {
+    this.fetchCreel();
     this.fetchAllFish();
   }
 
@@ -65,11 +66,11 @@ export default class FishList extends Component {
       <React.Fragment>
         <section>
           {/* if else statement. if userId from creel is = to activerUser then render add fish modal */}
-          {/* {this.state.creel.userId === this.props.activeUser() ? (
+          {this.state.creel.userId === this.props.activeUser() ? (
+            <FishAddModal addNewFish={this.addNewFish} {...this.props} />
           ) : (
             ""
-          )} */}
-          <FishAddModal addNewFish={this.addNewFish} {...this.props} />
+          )}
         </section>
         <div>
           <h3>Fishes </h3>

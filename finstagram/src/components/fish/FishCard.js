@@ -42,7 +42,7 @@ export default class FishCard extends Component {
               <br />
               Caught with {this.props.fish.lure}{" "}
             </CardText>
-            {this.state.fish.userId === this.props.activeUser() ? (
+            {this.props.fish.userId === this.props.activeUser() ? (
               <React.Fragment>
                 <FishEditModal {...this.props} />
                 <Button
