@@ -1,12 +1,19 @@
+// Purpose: Renders the main component and initializes firebase for image store.
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
+// import css
 import "./index.css";
+// import bootstrap styling
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as serviceWorker from "./serviceWorker";
+// import Finstagram component
 import Finstagram from "./components/Finstagram";
+// import Firebase for images
 import * as firebase from "firebase/app";
 
+// stuff from FireBase
 const firebaseConfig = {
   apiKey: "AIzaSyBymvB1fR7dopDd2cOkrHrxvTGH3bDQHeg",
   authDomain: "finstagram-c33b0.firebaseapp.com",
@@ -20,6 +27,7 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// renders Finstagram in the browser
 ReactDOM.render(
   <Router>
     <Finstagram />

@@ -31,6 +31,7 @@ export default class FishAddModal extends React.Component {
       catchOfDay: "",
       photoUrl: "",
       photo: "",
+      userId: "",
       timeStamp: Date.now()
     };
 
@@ -110,6 +111,7 @@ export default class FishAddModal extends React.Component {
         catchOfDay: this.state.catchOfDay,
         timeStamp: this.state.timeStamp,
         creelId: this.props.creelId,
+        userId: this.props.activeUser(),
         photoUrl: ""
       };
       // adds the new fish to the API && closes the modal w/ toggle function

@@ -13,8 +13,7 @@ import {
 import "../auth/Login.css";
 import Authentication from "../../modules/AuthenticationManager";
 
-// login form imported from ReactStrap. Modified for Finstagram.
-class Login extends React.Component {
+export default class Login extends React.Component {
   // Set initial state
   state = {
     loginUsername: "",
@@ -28,17 +27,18 @@ class Login extends React.Component {
     this.setState(stateChange);
   };
 
-  // handles the login of an existing account by setting the user id into session storage
+  // Handles the login of an existing user
   handleLogin = evt => {
+    // prevents page from reloading.
     evt.preventDefault();
     if (
-      // if state of username and password is empty then alert the user to fill out both fields.
+      // If any of these values are left empty, alert user to fill out all fields.
       this.state.loginUsername === "" ||
       this.state.loginPassword === ""
     ) {
       window.alert("Please fill out a username and password.");
     } else {
-      // fetch call to check to see if a user and password exists. passes in the state of username and password in as parameters
+      // fetch call that checks database for username and password.
       Authentication.checkUser(
         this.state.loginUsername,
         this.state.loginPassword
@@ -68,12 +68,14 @@ class Login extends React.Component {
         <Container id="formContainer">
           <Container id="inputContainer">
             <Form>
+              {/* Form group for username */}
               <FormGroup row>
                 <Label sm={4} for="username">
                   Username
                 </Label>
                 <Col>
                   <Input
+                    // inject inputFieldHandler method into the input. This will update state when the value changes
                     onChange={this.inputFieldHandler}
                     type="text"
                     name="username"
@@ -81,12 +83,14 @@ class Login extends React.Component {
                   />
                 </Col>
               </FormGroup>
+              {/* Form Group for Password */}
               <FormGroup row>
                 <Label sm={4} for="password">
                   Password
                 </Label>
                 <Col>
                   <Input
+                    // inject inputFieldHandler method into the input. This will update state when the value changes
                     onChange={this.inputFieldHandler}
                     type="password"
                     name="password"
@@ -97,7 +101,12 @@ class Login extends React.Component {
             </Form>
           </Container>
           <Container id="loginBtnContainer">
-            <Button onClick={this.handleLogin} id="loginBtn" type="submit">
+            <Button
+              // inject handleLogin method into the button. Function is invoked onClick
+              onClick={this.handleLogin}
+              id="loginBtn"
+              type="submit"
+            >
               Login
             </Button>
           </Container>
@@ -106,5 +115,3 @@ class Login extends React.Component {
     );
   }
 }
-
-export default Login;

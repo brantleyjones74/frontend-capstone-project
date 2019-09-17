@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Card, Button, CardTitle, CardText, Row, Col } from "reactstrap";
 import CreelEditModal from "./CreelEditModal";
 
-// CHANGE COLOR OF TEXT.
 export default class FishCard extends Component {
   render() {
     return (
@@ -26,7 +25,7 @@ export default class FishCard extends Component {
             <Link to={`/creels/${this.props.creel.id}`}>
               <Button>Details</Button>
             </Link>
-
+            {/* if statement injected into JSX */}
             {this.props.userpage ? (
               <React.Fragment>
                 <CreelEditModal {...this.props} />

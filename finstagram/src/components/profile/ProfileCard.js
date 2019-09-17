@@ -1,18 +1,13 @@
+// Purpose: Display the details of a certain user in a card.
+
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
-import {
-  Card,
-  CardImg,
-  // Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
+import ProfileEditModal from "../profile/ProfileEditModal";
 
 export default class ProfileCard extends Component {
+  // set initial state
   state = {
     firstName: "",
     lastName: "",
@@ -23,8 +18,9 @@ export default class ProfileCard extends Component {
     photoUrl: ""
   };
 
-  fetchActiveUser = () => {
-    UserManager.getUsers(this.props.userId).then(user => {
+  // fetches the user's data for the specific card. Set state with data from API call
+  fetchUserInfo = () => {
+    UserManager.getUser(this.props.userId).then(user => {
       this.setState({
         firstName: user.firstName,
         lastName: user.lastName,
@@ -38,16 +34,17 @@ export default class ProfileCard extends Component {
   };
 
   componentDidMount() {
-    this.fetchActiveUser();
+    this.fetchUserInfo();
   }
 
+  // edit user method passing new user obj and id through function. then fetch updated data.
   editUser = (obj, id) => {
-    console.log(obj);
     return UserManager.updateUser(obj, id).then(() => {
-      this.fetchActiveUser();
+      this.fetchUserInfo();
     });
   };
 
+  // sets userpage to false. use this to hide buttons for user that's not logged in.
   userpage = false;
 
   render() {
@@ -56,6 +53,14 @@ export default class ProfileCard extends Component {
         <Row>
           <Col sm="6">
             <Card body>
+              {/* inject ProfileEditModal. pass edit user function to it. */}
+              {this.props.userpage ? (
+                <ProfileEditModal editUser={this.editUser} {...this.props} />
+              ) : this.props.userId === this.props.activeUser() ? (
+                <ProfileEditModal editUser={this.editUser} {...this.props} />
+              ) : (
+                ""
+              )}
               <CardImg src={this.state.photoUrl}></CardImg>
               <CardTitle className="text-danger">
                 {this.state.username}
@@ -63,7 +68,7 @@ export default class ProfileCard extends Component {
               <CardText className="text-danger">
                 {this.state.firstName} {this.state.lastName}
                 <br />
-                {this.state.city}, {this.state.state}
+                {this.state.city}{this.state.state}
                 <br />
                 {this.state.bio}
               </CardText>
@@ -71,10 +76,8 @@ export default class ProfileCard extends Component {
           </Col>
         </Row>
         <div>
-          <CreelList
-            userpage={this.props.userpage}
-            {...this.props}
-          />
+          {/* inject CreelList into the component and pass props and userpage into the component */}
+          <CreelList userpage={this.props.userpage} {...this.props} />
         </div>
       </React.Fragment>
     );
