@@ -14,7 +14,6 @@ import {
   Button
 } from "reactstrap";
 // import Logo component
-import Logo from "../images/Finstagram.png";
 
 export default class NavBar extends React.Component {
   // Constructor from ReactStrap. Call this before Component is mounted
@@ -42,10 +41,7 @@ export default class NavBar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">
-            {/* inject the img component with Logo as the source */}
-            <img src={Logo}></img>
-          </NavbarBrand>
+          <NavbarBrand href="/">Finstagram</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
