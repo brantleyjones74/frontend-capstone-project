@@ -1,3 +1,9 @@
+#creelListContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 #creelCardContainer {
-    display: flex;
+  display: flex;
+  justify-content: space-around;
 }

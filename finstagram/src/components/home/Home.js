@@ -91,8 +91,9 @@ export default class ProfileCard extends Component {
               </div>
             </Col>
             <Col>
-              <CreelList {...this.props} />
+            Following List Here (Stretch)
             </Col>
+              {/* <CreelList {...this.props} /> */}
           </Row>
         </div>
       </React.Fragment>

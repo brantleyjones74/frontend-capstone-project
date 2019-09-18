@@ -3,12 +3,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Card, CardTitle, CardText } from "reactstrap";
+import "../profile/ProfileListView.css"
 
 export default class ProfileCard extends React.Component {
   render() {
     return (
-      <Container>
-        <Card>
+      <Container id="cardContainer">
+        <Card className="profileSummaryCard">
           <CardTitle>
             {/* display first and last name using data from props (data from map method in ProfileList component) */}
             {this.props.users.firstName} {this.props.users.lastName}
