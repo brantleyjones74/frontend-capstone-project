@@ -58,8 +58,6 @@ export default class FishList extends Component {
     });
   };
 
-  // check if fish userId matches active user Id if they match show button if not don't show button
-
   render() {
     return (
       <React.Fragment>

@@ -20,8 +20,6 @@ export default class ProfileList extends React.Component {
     });
   };
 
-
-
   // invokes fetchAllUsers when component is mounted into the route tree
   componentDidMount() {
     this.fetchAllUsers();

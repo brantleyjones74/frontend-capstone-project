@@ -7,7 +7,7 @@ import "../profile/ProfileListView.css";
 import FollowManager from "../../modules/FollowManager";
 
 export default class ProfileListView extends React.Component {
-  // WORKING ON FOLLOWING FOR STRETCH GOAL.
+  // set state
   state = {
     follow: [],
     userId: "",
@@ -15,15 +15,17 @@ export default class ProfileListView extends React.Component {
     timeStamp: Date.now()
   };
 
+  // FOLLOWING FOR STRETCH GOAL
   // function that makes a new follow connection
   followUser = evt => {
     evt.preventDefault();
+    // create new object to pass through addNewFollow
     const newFollowObj = {
       userId: this.props.activeUser(),
       otherUserId: this.props.users.id,
       timeStamp: Date.now()
     };
-    console.log(newFollowObj);
+    // invokes addNewFollow method from FollowManager module.
     FollowManager.addNewFollow(newFollowObj);
   };
 

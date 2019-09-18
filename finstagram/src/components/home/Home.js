@@ -1,6 +1,5 @@
 // Purpose: Displays the details of the active user.
-// Tried to inject ProfileCard component b/c they're very similar. Had trouble retrieving data.
-
+// I didn't import the ProfileCard component because the data wasn't rendering. Clean this up for stretch goal?
 import React, { Component } from "react";
 import {
   Card,

@@ -44,6 +44,7 @@ export default class FishCard extends Component {
               <br />
               Caught with {this.props.fish.lure}{" "}
             </CardText>
+            {/* ternary conditional statement. only renders fisheditmodal and delete button for the active user. */}
             {this.props.userpage ? (
               <React.Fragment>
                 <FishEditModal {...this.props} />
