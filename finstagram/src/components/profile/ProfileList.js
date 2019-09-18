@@ -4,7 +4,6 @@ import React from "react";
 import { ListGroup } from "reactstrap";
 import ProfileListView from "./ProfileListView";
 import UserManager from "../../modules/UserManager";
-import FollowManager from "../../modules/FollowManager";
 
 export default class ProfileList extends React.Component {
   // set initial state
@@ -21,10 +20,7 @@ export default class ProfileList extends React.Component {
     });
   };
 
-  // new follow
-  addNewFollow = (obj) => {
-    FollowManager.addNewFollow(obj);
-  };
+
 
   // invokes fetchAllUsers when component is mounted into the route tree
   componentDidMount() {
@@ -43,7 +39,7 @@ export default class ProfileList extends React.Component {
                 key={users.id}
                 users={users}
                 // addNewFollow={this.addNewFollow}
-                // {...this.props}
+                {...this.props}
               />
             );
           })}
