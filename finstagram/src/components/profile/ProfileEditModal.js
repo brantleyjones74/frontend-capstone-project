@@ -1,5 +1,6 @@
 // Purpose: component for a modal that allows user to edit their profile.
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Button,
   Modal,
@@ -14,6 +15,7 @@ import {
 import * as firebase from "firebase/app";
 import "firebase/storage";
 import UserManager from "../../modules/UserManager";
+import "../profile/ProfileEditModal.css"
 
 export default class ProfileEditModal extends React.Component {
   // set initial state with constructor(props) and super(props)
@@ -135,9 +137,9 @@ export default class ProfileEditModal extends React.Component {
       <div>
         {/* Form and Button that will invoke toggle method and open the modal. */}
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="primary" onClick={this.toggle}>
+          <Link id="editProfileLink" to="#" onClick={this.toggle}>
             Edit Profile
-          </Button>
+          </Link>
         </Form>
         <Modal
           isOpen={this.state.modal}

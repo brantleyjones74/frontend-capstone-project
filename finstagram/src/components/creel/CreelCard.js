@@ -8,8 +8,7 @@ import CreelEditModal from "./CreelEditModal";
 export default class FishCard extends Component {
   render() {
     return (
-      <Row>
-        <Col sm="6">
+        <Col sm={4}>
           <Card body>
             <CardTitle className="text-danger">
               {this.props.creel.name}
@@ -49,7 +48,6 @@ export default class FishCard extends Component {
             )}
           </Card>
         </Col>
-      </Row>
     );
   }
 }

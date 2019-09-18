@@ -2,10 +2,19 @@
 // Similar to ProfileCard. Refactor to inject ProfileCard???
 
 import React, { Component } from "react";
-import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
+import {
+  Card,
+  Container,
+  CardImg,
+  CardTitle,
+  CardText,
+  Row,
+  Col
+} from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
+import "../home/Home.css";
 
 export default class ProfileCard extends Component {
   // set initial state
@@ -52,27 +61,40 @@ export default class ProfileCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row>
-          <Col sm="6">
-            <Card body>
-              {/* inject ProfileEditModal. pass edit user function to it. */}
-              <ProfileEditModal editUser={this.editUser} {...this.props} />
-              <CardImg src={this.state.photoUrl}></CardImg>
-              <CardTitle className="text-danger">
-                {this.state.username}
-              </CardTitle>
-              <CardText className="text-danger">
-                {this.state.firstName} {this.state.lastName}
-                <br />
-                {this.state.city}{this.state.state}
-                <br />
-                {this.state.bio}
-              </CardText>
-            </Card>
-          </Col>
-        </Row>
-        {/* inject CreelList component */}
-        <CreelList {...this.props} />
+        <div id="homeContainer">
+          <Row>
+            <Col>
+              <div id="profileCardContainer">
+                <Card id="profileCard" body inverse color="info">
+                  <ProfileEditModal
+                    id="profileEditModal"
+                    editUser={this.editUser}
+                    {...this.props}
+                  />
+                  <CardImg
+                    top
+                    width="100%"
+                    alt="Card image cap"
+                    id="profilePic"
+                    src={this.state.photoUrl}
+                  ></CardImg>
+                  <CardTitle className="">{this.state.username}</CardTitle>
+                  <CardText className="">
+                    {this.state.firstName} {this.state.lastName}
+                    <br />
+                    {this.state.city}
+                    {this.state.state}
+                    <br />
+                    {this.state.bio}
+                  </CardText>
+                </Card>
+              </div>
+            </Col>
+            <Col>
+              <CreelList {...this.props} />
+            </Col>
+          </Row>
+        </div>
       </React.Fragment>
     );
   }
