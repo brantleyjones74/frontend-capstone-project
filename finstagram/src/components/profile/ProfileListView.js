@@ -9,11 +9,13 @@ import FollowManager from "../../modules/FollowManager";
 export default class ProfileListView extends React.Component {
   // WORKING ON FOLLOWING FOR STRETCH GOAL.
   state = {
+    follow: [],
     userId: "",
     otherUserId: "",
     timeStamp: Date.now()
   };
 
+  // function that makes a new follow connection
   followUser = evt => {
     evt.preventDefault();
     const newFollowObj = {
@@ -23,6 +25,18 @@ export default class ProfileListView extends React.Component {
     };
     console.log(newFollowObj);
     FollowManager.addNewFollow(newFollowObj);
+  };
+
+  // function that checks for followers
+  checkFollow = () => {
+    FollowManager.checkFollow(
+      this.props.activeUser(),
+      this.props.users.id
+    ).then(follow => {
+      this.setState({
+        follow: follow
+      });
+    });
   };
 
   render() {
@@ -42,8 +56,12 @@ export default class ProfileListView extends React.Component {
           <Link to={`/users/${this.props.users.id}`}>
             <Button>View Profile</Button>
           </Link>
-          {/* Eventually this will allow active user to follow another user STRETCH */}
-          <Button onClick={this.followUser}>Follow</Button>
+          {/* CONDITIONAL RENDERING OF BUTTON */}
+          {this.state.follow.userId === this.props.activeUser() ? (
+            ""
+          ) : (
+            <Button onClick={this.followUser}>Follow</Button>
+          )}
         </Card>
       </Container>
     );
