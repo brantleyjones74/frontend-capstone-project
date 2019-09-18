@@ -44,8 +44,16 @@ export default class FishCard extends Component {
               <br />
               Caught with {this.props.fish.lure}{" "}
             </CardText>
-            {/* if fish.userId = activeUser value then render fish edit modal and delete button. other wise render an empty string */}
-            {this.props.fish.userId === this.props.activeUser() ? (
+            {this.props.userpage ? (
+              <React.Fragment>
+                <FishEditModal {...this.props} />
+                <Button
+                  onClick={() => this.props.deleteFish(this.props.fish.id)}
+                >
+                  Delete Fish
+                </Button>
+              </React.Fragment>
+            ) : this.state.fish.userId === this.props.activeUser() ? (
               <React.Fragment>
                 <FishEditModal {...this.props} />
                 <Button

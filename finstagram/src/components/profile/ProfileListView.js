@@ -3,9 +3,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Card, CardTitle, CardText } from "reactstrap";
-import "../profile/ProfileListView.css"
+import "../profile/ProfileListView.css";
 
 export default class ProfileListView extends React.Component {
+  // WORKING ON FOLLOWING FOR STRETCH GOAL.
+  state = {
+    follow: [],
+    userId: "",
+    otherUserId: "",
+    timeStamp: Date.now()
+  };
+
+  // followUser = evt => {
+  //   evt.preventDefault();
+  //   const newFollowObj = {
+  //     userId: this.props.activeUser(),
+  //     otherUserId: this.props.userId
+  //   };
+  //   this.props.addNewFollow(newFollowObj);
+  // };
+
   render() {
     return (
       <Container id="cardContainer">
