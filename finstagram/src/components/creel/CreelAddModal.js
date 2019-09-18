@@ -1,6 +1,4 @@
-// Purpose: Uses ReactStrap for a modal to add a new creel.
-
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
+// Purpose: Exports CreelAddModal.
 
 import React from "react";
 import {
@@ -72,7 +70,7 @@ export default class CreelAddModal extends React.Component {
         location: this.state.location,
         notes: this.state.notes,
         timeStamp: this.state.timeStamp,
-        userId: this.props.activeUser(),
+        userId: this.props.activeUser()
       };
       // adds the new fish to the API && closes the modal w/ toggle function
       this.props.addNewCreel(creel).then(() => this.toggle());

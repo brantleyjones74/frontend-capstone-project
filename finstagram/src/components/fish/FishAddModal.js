@@ -1,4 +1,4 @@
-// Purpose: Uses ReactStrap for a modal to add a new fish.
+// Purpose: Export FishAddModal.
 
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 

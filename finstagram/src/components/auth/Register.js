@@ -1,4 +1,4 @@
-// Purpose: handles the registration of a new user.
+// Purpose: Exports Register Component.
 
 import React from "react";
 import {

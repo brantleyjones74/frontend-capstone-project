@@ -19,9 +19,9 @@ import ProfileList from "./profile/ProfileList";
 import ProfileCard from "./profile/ProfileCard";
 
 export default class ApplicationViews extends Component {
-  // function that checks to see if the user is logged in and stored in session storage
+  // checks to see if the user is logged in and stored in session storage
   isUserAuthenticated = () => sessionStorage.getItem("activeUser") !== null;
-  // function that converts the activeUser value in session storage to an integer
+  // converts the activeUser value in session storage to an integer
   activeUser = () => parseInt(sessionStorage.getItem("activeUser"));
   // if true it's the active user's data, if false it will only display other users info
   userpage = true;
@@ -29,9 +29,9 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* routes user to Register page and injects the Register component */}
+        {/* route user to Register page and injects the Register component */}
         <Route path="/register" component={Register} />
-        {/* routes user to login page and injects the Login component */}
+        {/* route user to login page and injects the Login component */}
         <Route path="/login" component={Login} />
 
         {/* route if the user is authenticated render the Home Component otherwise render the Welcome comopnent */}
@@ -78,12 +78,11 @@ export default class ApplicationViews extends Component {
           render={props => {
             return (
               <FishList
+                // pass userpage, activeUser, creelId, & props into FishList
                 userpage={this.userpage}
-                // pass activeUser, creelId, and props into the Component
                 activeUser={this.activeUser}
-                {...props}
-                // parses the creelId to an integer
                 creelId={parseInt(props.match.params.creelId)}
+                {...props}
               />
             );
           }}
@@ -111,11 +110,11 @@ export default class ApplicationViews extends Component {
           render={props => {
             return (
               <ProfileCard
-                // pass activeUser, props, and userId into the component
+                // pass activeUser, userId, and props into the component
                 activeUser={this.activeUser}
-                {...props}
                 // parses userId to an integer
                 userId={parseInt(props.match.params.userId)}
+                {...props}
               />
             );
           }}

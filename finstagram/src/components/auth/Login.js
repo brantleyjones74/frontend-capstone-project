@@ -1,10 +1,10 @@
-// Purpose: handles the login functionality for an existing user.
+// Purpose: Exports Login Component.
 
 import React from "react";
 import {
   Button,
   Col,
-  Row,
+  // Row,
   Container,
   Form,
   FormGroup,

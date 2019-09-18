@@ -1,4 +1,4 @@
-// Purpose: Display the details of a certain user in a card.
+// Purpose: Export ProfileCard that renders the details of a specific user and displays their CreelList component.
 
 import React, { Component } from "react";
 import {

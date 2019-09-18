@@ -1,4 +1,4 @@
-// Purpose: Creates a list displaying all Fish Cards.
+// Purpose: Exports FishList component
 
 import React, { Component } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
@@ -23,7 +23,7 @@ export default class FishList extends Component {
     });
   };
 
-  // fetch all fish for the active user. updates state to the response from the api
+  // fetch all fish for a specific creel and then set state for empty fish array.
   fetchAllFish = () => {
     FishManager.getAllFish(this.props.creelId).then(fish => {
       this.setState({
@@ -32,20 +32,19 @@ export default class FishList extends Component {
     });
   };
 
-  // mounts component to the page and displays state.
   componentDidMount() {
     this.fetchCreel();
     this.fetchAllFish();
   }
 
-  // method to add new fish and then fetch the updated API. updates state with the new data.
+  // method to add new fish and then fetch the updated API. updates state with the new data. Pass to FishAddModal component
   addNewFish = obj => {
     return FishManager.addNewFish(obj).then(() => {
       this.fetchAllFish();
     });
   };
 
-  // method to handle updating an existing fish from the API. update state w/ updated data.
+  // method to handle updating an existing fish from the API. update state w/ updated data. Pass to FishEditModal component
   editFish = (obj, id) => {
     return FishManager.updateFish(obj, id).then(() => {
       this.fetchAllFish();
@@ -65,7 +64,7 @@ export default class FishList extends Component {
     return (
       <React.Fragment>
         <section>
-          {/* if else statement. if userId from creel is = to activerUser then render add fish modal */}
+          {/* ternary conditional statement. if the userId in the creelobj from state is = to the activeUser then render the FishAddModal. if not render an empty string */}
           {this.state.creel.userId === this.props.activeUser() ? (
             <FishAddModal addNewFish={this.addNewFish} {...this.props} />
           ) : (

@@ -1,4 +1,5 @@
-// Purpose: component for a modal that allows user to edit their profile.
+// Purpose: Export ProfileEditModal that can allow a user to add a profile picture and a biography.
+
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,14 +9,14 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
+  // Label, add for better UX
   Form,
-  FormGroup
+  // FormGroup add later
 } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/storage";
 import UserManager from "../../modules/UserManager";
-import "../profile/ProfileEditModal.css"
+import "../profile/ProfileEditModal.css";
 
 export default class ProfileEditModal extends React.Component {
   // set initial state with constructor(props) and super(props)

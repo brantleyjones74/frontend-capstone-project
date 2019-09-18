@@ -1,4 +1,4 @@
-// Purpose: Renders a "card" that contains the info for a single fish.
+// Purpose: Exports FishCardComponent
 
 import React, { Component } from "react";
 import {

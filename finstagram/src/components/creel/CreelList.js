@@ -1,4 +1,4 @@
-// Purpose: Creates a list displaying all Creel Cards.
+// Purpose: Exports CreelList Component.
 
 import React, { Component } from "react";
 import CreelCard from "./CreelCard";

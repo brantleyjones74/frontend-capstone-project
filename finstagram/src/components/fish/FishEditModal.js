@@ -1,7 +1,7 @@
-// Purpose: Builds a modal that allows user to edit a fish.
+// Purpose: Export FishEditModal component
 
 import React from "react";
-import {
+import { 
   Button,
   Modal,
   ModalHeader,

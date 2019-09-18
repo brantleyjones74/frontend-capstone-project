@@ -1,10 +1,10 @@
 // Purpose: Displays the details of the active user.
-// Similar to ProfileCard. Refactor to inject ProfileCard???
+// Tried to inject ProfileCard component b/c they're very similar. Had trouble retrieving data.
 
 import React, { Component } from "react";
 import {
   Card,
-  Container,
+  // Container,
   CardImg,
   CardTitle,
   CardText,
@@ -13,10 +13,10 @@ import {
 } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
-import CreelList from "../creel/CreelList";
+// import CreelList from "../creel/CreelList";
 import "../home/Home.css";
 
-export default class ProfileCard extends Component {
+export default class Home extends Component {
   // set initial state
   state = {
     firstName: "",
@@ -56,6 +56,7 @@ export default class ProfileCard extends Component {
   };
 
   // sets userpage to false. use this to hide buttons for user that's not logged in.
+  // Not sure if needed for Home.js
   userpage = false;
 
   render() {
@@ -90,10 +91,8 @@ export default class ProfileCard extends Component {
                 </Card>
               </div>
             </Col>
-            <Col>
-            Following List Here (Stretch)
-            </Col>
-              {/* <CreelList {...this.props} /> */}
+            <Col>Following List Here (Stretch Goal)</Col>
+            {/* <CreelList {...this.props} /> */}
           </Row>
         </div>
       </React.Fragment>
