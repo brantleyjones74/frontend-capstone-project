@@ -1,11 +1,11 @@
-// Purpose: Component that fetches all users, maps over them and passes the data into the ProfileViewList component
+// Purpose: Export ProfileList Component that fetches all users, maps over them and passes the data into the ProfileViewList component
 
 import React from "react";
 import { ListGroup } from "reactstrap";
 import ProfileListView from "./ProfileListView";
 import UserManager from "../../modules/UserManager";
 
-export default class Example extends React.Component {
+export default class ProfileList extends React.Component {
   // set initial state
   state = {
     users: []
@@ -20,6 +20,7 @@ export default class Example extends React.Component {
     });
   };
 
+  // invokes fetchAllUsers when component is mounted into the route tree
   componentDidMount() {
     this.fetchAllUsers();
   }

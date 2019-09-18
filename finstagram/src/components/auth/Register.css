@@ -1,11 +1,12 @@
 #formContainer {
   border: 1px solid black;
   display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 5%;
   padding-top: 3%;
   padding-bottom: 3%;
+  max-width: 70%;
 }
 
 #registerBtnContainer {

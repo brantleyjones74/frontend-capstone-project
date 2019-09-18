@@ -1,4 +1,4 @@
-// Purpose: Builds a modal that allows user to edit a creel.
+// Purpose: Exports CreelEditModal.
 
 import React from "react";
 import {

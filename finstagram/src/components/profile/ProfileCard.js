@@ -1,10 +1,19 @@
-// Purpose: Display the details of a certain user in a card.
+// Purpose: Export ProfileCard that renders the details of a specific user and displays their CreelList component.
 
 import React, { Component } from "react";
-import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
+import {
+  Card,
+  Container,
+  CardImg,
+  CardTitle,
+  CardText,
+  Row,
+  Col
+} from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
 import ProfileEditModal from "../profile/ProfileEditModal";
+import "../profile/ProfileCard.css";
 
 export default class ProfileCard extends Component {
   // set initial state
@@ -49,37 +58,46 @@ export default class ProfileCard extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Row>
-          <Col sm="6">
-            <Card body>
-              {/* inject ProfileEditModal. pass edit user function to it. */}
-              {this.props.userpage ? (
-                <ProfileEditModal editUser={this.editUser} {...this.props} />
-              ) : this.props.userId === this.props.activeUser() ? (
-                <ProfileEditModal editUser={this.editUser} {...this.props} />
-              ) : (
-                ""
-              )}
-              <CardImg src={this.state.photoUrl}></CardImg>
-              <CardTitle className="text-danger">
-                {this.state.username}
-              </CardTitle>
-              <CardText className="text-danger">
-                {this.state.firstName} {this.state.lastName}
-                <br />
-                {this.state.city}{this.state.state}
-                <br />
-                {this.state.bio}
-              </CardText>
-            </Card>
-          </Col>
-        </Row>
-        <div>
-          {/* inject CreelList into the component and pass props and userpage into the component */}
-          <CreelList userpage={this.props.userpage} {...this.props} />
-        </div>
-      </React.Fragment>
+      <Container id="profileCardContainer">
+        <React.Fragment>
+          <Row>
+            <Col sm="6">
+              <Card id="profileCardBody" body>
+                {/* inject ProfileEditModal. pass edit user function to it. */}
+                {this.props.userpage ? (
+                  <ProfileEditModal
+                    id="profileEditModal"
+                    editUser={this.editUser}
+                    {...this.props}
+                  />
+                ) : this.props.userId === this.props.activeUser() ? (
+                  <ProfileEditModal
+                    id="profileEditModal"
+                    editUser={this.editUser}
+                    {...this.props}
+                  />
+                ) : (
+                  ""
+                )}
+                <CardImg id="profileImage" src={this.state.photoUrl}></CardImg>
+                <CardTitle>{this.state.username}</CardTitle>
+                <CardText className="text-success">
+                  {this.state.firstName} {this.state.lastName}
+                  <br />
+                  {this.state.city}
+                  {this.state.state}
+                  <br />
+                  {this.state.bio}
+                </CardText>
+              </Card>
+            </Col>
+          </Row>
+          <div>
+            {/* inject CreelList into the component and pass props and userpage into the component */}
+            <CreelList userpage={this.props.userpage} {...this.props} />
+          </div>
+        </React.Fragment>
+      </Container>
     );
   }
 }
