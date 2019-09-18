@@ -21,12 +21,16 @@ export default class FishCard extends Component {
 
   // fetch a single fish and set it to state
   fetchFish = () => {
-    FishManager.getFish(this.props.fishId).then(fish => {
+    FishManager.getFish(this.props.fish.id).then(fish => {
       this.setState({
         fish: fish
       });
     });
   };
+
+  componentDidMount() {
+    this.fetchFish();
+  }
 
   render() {
     return (
@@ -45,24 +49,15 @@ export default class FishCard extends Component {
               Caught with {this.props.fish.lure}{" "}
             </CardText>
             {/* ternary conditional statement. only renders fisheditmodal and delete button for the active user. */}
-            {this.props.userpage ? (
-              <React.Fragment>
+            {this.state.fish.userId === this.props.activeUser() ? (
+              <div>
                 <FishEditModal {...this.props} />
                 <Button
                   onClick={() => this.props.deleteFish(this.props.fish.id)}
                 >
                   Delete Fish
                 </Button>
-              </React.Fragment>
-            ) : this.state.fish.userId === this.props.activeUser() ? (
-              <React.Fragment>
-                <FishEditModal {...this.props} />
-                <Button
-                  onClick={() => this.props.deleteFish(this.props.fish.id)}
-                >
-                  Delete Fish
-                </Button>
-              </React.Fragment>
+              </div>
             ) : (
               ""
             )}

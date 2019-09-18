@@ -15,7 +15,7 @@ export default {
   },
 
 //   method that fetches a specific connection
-  getFollow(userId, otherUserId) {
+  getFollowers(userId, otherUserId) {
     return fetch(
       `${jsonServerURL}/follow?userId=${userId}&otherUserId=${otherUserId}`
     ).then(response => response.json());

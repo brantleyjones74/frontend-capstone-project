@@ -7,7 +7,7 @@ import "../profile/ProfileListView.css";
 import FollowManager from "../../modules/FollowManager";
 
 export default class ProfileListView extends React.Component {
-  // set state
+  // set initial state
   state = {
     follow: [],
     userId: "",
@@ -26,20 +26,36 @@ export default class ProfileListView extends React.Component {
       timeStamp: Date.now()
     };
     // invokes addNewFollow method from FollowManager module.
-    FollowManager.addNewFollow(newFollowObj);
+    FollowManager.addNewFollow(newFollowObj).then(
+      FollowManager.getFollowers(
+        this.props.activeUser(),
+        this.props.users.id
+      ).then(follow => {
+        this.setState({
+          follow: follow
+        });
+        console.log(this.state);
+      })
+    );
   };
 
   // function that checks for followers
-  checkFollow = () => {
-    FollowManager.checkFollow(
-      this.props.activeUser(),
-      this.props.users.id
-    ).then(follow => {
-      this.setState({
-        follow: follow
-      });
-    });
-  };
+  // console logged response and state was only empty arrays
+  // checkFollow = () => {
+  //   FollowManager.getFollowers(
+  //     this.props.activeUser(),
+  //     this.props.users.id
+  //   ).then(follow => {
+  //     this.setState({
+  //       follow: follow
+  //     });
+  // console.log(this.state)
+  //   });
+  // };
+
+  componentDidMount() {
+    // this.checkFollow();
+  }
 
   render() {
     return (
@@ -59,11 +75,12 @@ export default class ProfileListView extends React.Component {
             <Button>View Profile</Button>
           </Link>
           {/* CONDITIONAL RENDERING OF BUTTON */}
-          {this.state.follow.userId === this.props.activeUser() ? (
-            ""
+          {/* {this.props.userpage ? (
+          ) : this.state.follow.userId === this.props.activeUser() ? (
           ) : (
-            <Button onClick={this.followUser}>Follow</Button>
-          )}
+            ""
+          )} */}
+          <Button onClick={this.followUser}>Follow</Button>
         </Card>
       </Container>
     );

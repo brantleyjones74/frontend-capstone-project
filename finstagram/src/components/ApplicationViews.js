@@ -95,6 +95,7 @@ export default class ApplicationViews extends Component {
           render={props => {
             return (
               <ProfileList
+                userpage={this.userpage}
                 // passes activeUser and props into the component
                 activeUser={this.activeUser}
                 {...props}
