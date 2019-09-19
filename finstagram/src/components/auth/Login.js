@@ -51,6 +51,7 @@ export default class Login extends React.Component {
               "activeUser",
               JSON.stringify(userArray[0].id)
             );
+            this.props.changeLogoutState();
             this.props.history.push("/");
             // routes back to /home after user id is stored in session storage
             // this.props.history.push("/home");
@@ -63,44 +64,49 @@ export default class Login extends React.Component {
     }
   };
 
+  // loginOnClick = evt => {
+  //   this.handleLogin();
+  //   this.props.changeLogoutState();
+  // };
+
   render() {
     return (
       <React.Fragment>
         <Container id="formContainer">
           <Container id="inputContainer">
             <Form>
-                {/* Form group for username */}
-                <FormGroup row>
-                  <Label sm={4} for="username">
-                    Username
-                  </Label>
-                  <Col>
-                    <Input
-                      sm={8}
-                      // inject inputFieldHandler method into the input. This will update state when the value changes
-                      onChange={this.inputFieldHandler}
-                      type="text"
-                      name="username"
-                      id="loginUsername"
-                    />
-                  </Col>
-                </FormGroup>
-                {/* Form Group for Password */}
-                <FormGroup row>
-                  <Label sm={4} for="password">
-                    Password
-                  </Label>
-                  <Col>
-                    <Input
-                      sm={8}
-                      // inject inputFieldHandler method into the input. This will update state when the value changes
-                      onChange={this.inputFieldHandler}
-                      type="password"
-                      name="password"
-                      id="loginPassword"
-                    />
-                  </Col>
-                </FormGroup>
+              {/* Form group for username */}
+              <FormGroup row>
+                <Label sm={4} for="username">
+                  Username
+                </Label>
+                <Col>
+                  <Input
+                    sm={8}
+                    // inject inputFieldHandler method into the input. This will update state when the value changes
+                    onChange={this.inputFieldHandler}
+                    type="text"
+                    name="username"
+                    id="loginUsername"
+                  />
+                </Col>
+              </FormGroup>
+              {/* Form Group for Password */}
+              <FormGroup row>
+                <Label sm={4} for="password">
+                  Password
+                </Label>
+                <Col>
+                  <Input
+                    sm={8}
+                    // inject inputFieldHandler method into the input. This will update state when the value changes
+                    onChange={this.inputFieldHandler}
+                    type="password"
+                    name="password"
+                    id="loginPassword"
+                  />
+                </Col>
+              </FormGroup>
             </Form>
           </Container>
           <Container id="loginBtnContainer">

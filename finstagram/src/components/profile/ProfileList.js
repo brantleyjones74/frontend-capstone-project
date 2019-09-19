@@ -32,7 +32,14 @@ export default class ProfileList extends React.Component {
         <ListGroup>
           {/* map over state and create a new array return ProfileListView and pass users.id and users */}
           {this.state.users.map(users => {
-            return <ProfileListView key={users.id} users={users} />;
+            return (
+              <ProfileListView
+                key={users.id}
+                users={users}
+                // addNewFollow={this.addNewFollow}
+                {...this.props}
+              />
+            );
           })}
         </ListGroup>
       </div>

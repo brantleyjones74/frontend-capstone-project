@@ -30,9 +30,29 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         {/* route user to Register page and injects the Register component */}
-        <Route path="/register" component={Register} />
+        <Route
+          path="/register"
+          render={props => {
+            return (
+              <Register
+                {...props}
+                changeLogoutState={this.props.changeLogoutState}
+              />
+            );
+          }}
+        />
         {/* route user to login page and injects the Login component */}
-        <Route path="/login" component={Login} />
+        <Route
+          path="/login"
+          render={props => {
+            return (
+              <Login
+                {...props}
+                changeLogoutState={this.props.changeLogoutState}
+              />
+            );
+          }}
+        />
 
         {/* route if the user is authenticated render the Home Component otherwise render the Welcome comopnent */}
         <Route
@@ -60,14 +80,18 @@ export default class ApplicationViews extends Component {
           exact
           path="/creels"
           render={props => {
-            return (
-              <CreelList
-                // pass activeUser, userpage, and props into the Component
-                userpage={this.userpage}
-                activeUser={this.activeUser}
-                {...props}
-              />
-            );
+            if (this.isUserAuthenticated()) {
+              return (
+                <CreelList
+                  // pass activeUser, userpage, and props into the Component
+                  userpage={this.userpage}
+                  activeUser={this.activeUser}
+                  {...props}
+                />
+              );
+            } else {
+              return <Welcome />;
+            }
           }}
         />
 
@@ -95,6 +119,7 @@ export default class ApplicationViews extends Component {
           render={props => {
             return (
               <ProfileList
+                userpage={this.userpage}
                 // passes activeUser and props into the component
                 activeUser={this.activeUser}
                 {...props}

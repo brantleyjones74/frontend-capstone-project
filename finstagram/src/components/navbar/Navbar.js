@@ -16,7 +16,7 @@ import {
 // import Logo component
 
 export default class NavBar extends React.Component {
-  // Constructor from ReactStrap. Call this before Component is mounted
+  // constructor
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -35,12 +35,14 @@ export default class NavBar extends React.Component {
   // Function that clears session storage to simulate logging out a user.
   logoutUser = () => {
     sessionStorage.clear();
+    this.props.changeLogoutState();
   };
+
 
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md">
           <NavbarBrand href="/">Finstagram</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -52,10 +54,14 @@ export default class NavBar extends React.Component {
                 <NavLink href="/users">Users</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">
-                  {/* inject the logoutUser function that clears session storage on click */}
-                  <Button onClick={this.logoutUser}>Logout</Button>
-                </Link>
+                {this.props.userAuthenticated() ? (
+                  <Link to="/">
+                    {/* inject the logoutUser function that clears session storage on click */}
+                    <Button onClick={this.logoutUser}>Logout</Button>
+                  </Link>
+                ) : (
+                  ""
+                )}
               </NavItem>
             </Nav>
           </Collapse>

@@ -1,11 +1,12 @@
 // Purpose: Exports FishList component
 
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+// import { Col, Row } from "reactstrap";
 import FishCard from "./FishCard";
 import FishManager from "../../modules/FishManager";
 import FishAddModal from "./FishAddModal";
 import CreelManager from "../../modules/CreelManager";
+import "../fish/FishList.css";
 
 export default class FishList extends Component {
   // set initial state (fish object) to an empty array
@@ -58,8 +59,6 @@ export default class FishList extends Component {
     });
   };
 
-  // check if fish userId matches active user Id if they match show button if not don't show button
-
   render() {
     return (
       <React.Fragment>
@@ -71,31 +70,30 @@ export default class FishList extends Component {
             ""
           )}
         </section>
-        <div>
-          <h3>Fishes </h3>
-          <ListGroup>
-            <ListGroupItem active tag="a" href="#" action>
-              {/* map over array of fish and then pass fish into the FishCard component */}
-              {this.state.fish.map(fish => {
-                return (
-                  <FishCard
-                    userpage={this.props.userpage}
-                    // id of fish being displayed
-                    key={fish.id}
-                    // passes fish down to props
-                    fish={fish}
-                    // pass editFish function into FishCard component
-                    editFish={this.editFish}
-                    // pass deleteFish function into FishCard component
-                    deleteFish={this.deleteFish}
-                    // pass props into Fish Card component
-                    {...this.props}
-                  />
-                );
-              })}
-            </ListGroupItem>
-          </ListGroup>
-          <p />
+        <div id="fishListContainer">
+          <h3>Fish</h3>
+          {/* map over array of fish and then pass fish into the FishCard component */}
+          {this.state.fish.map(fish => {
+            return (
+              <div
+                // passes fish down to props. key has to be on div
+                key={fish.id}
+                className="fishCardContainer"
+              >
+                <FishCard
+                  userpage={this.props.userpage}
+                  // id of fish being displayed
+                  fish={fish}
+                  // pass editFish function into FishCard component
+                  editFish={this.editFish}
+                  // pass deleteFish function into FishCard component
+                  deleteFish={this.deleteFish}
+                  // pass props into Fish Card component
+                  {...this.props}
+                />
+              </div>
+            );
+          })}
         </div>
       </React.Fragment>
     );
