@@ -2,14 +2,7 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import {
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  // Row,
-  Col
-} from "reactstrap";
+import { Card, Button, CardTitle, CardText, Col } from "reactstrap";
 import CreelEditModal from "./CreelEditModal";
 
 export default class FishCard extends Component {

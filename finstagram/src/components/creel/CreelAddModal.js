@@ -116,6 +116,7 @@ export default class CreelAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
+            Notes: 
             <Input
               id="notes"
               type="textarea"
@@ -127,7 +128,7 @@ export default class CreelAddModal extends React.Component {
           <ModalFooter>
             {/* when button is clicked submit new fish to database */}
             <Button color="primary" onClick={this.submitNewCreel}>
-              Do Something
+              Save Creel
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel

@@ -169,7 +169,7 @@ export default class ProfileEditModal extends React.Component {
           <ModalFooter>
             {/* onclick invoke the update profile method */}
             <Button color="primary" onClick={this.updateProfile}>
-              Do Something
+              Submit Edit
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel

@@ -11,8 +11,9 @@ import {
   Col
 } from "reactstrap";
 import UserManager from "../../modules/UserManager";
+import FollowManager from "../../modules/FollowManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
-// import CreelList from "../creel/CreelList";
+import CreelList from "../creel/CreelList";
 import "../home/Home.css";
 
 export default class Home extends Component {
@@ -24,7 +25,8 @@ export default class Home extends Component {
     city: "",
     state: "",
     bio: "",
-    photoUrl: ""
+    photoUrl: "",
+    connectionId: ""
   };
 
   // fetches the user's data for the specific card. Set state with data from API call
@@ -90,8 +92,9 @@ export default class Home extends Component {
                 </Card>
               </div>
             </Col>
-            <Col>Following List Here (Stretch Goal)</Col>
-            {/* <CreelList {...this.props} /> */}
+            <Col>
+              <CreelList userpage={this.props.userpage} {...this.props} />
+            </Col>
           </Row>
         </div>
       </React.Fragment>

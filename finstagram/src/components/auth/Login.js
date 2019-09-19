@@ -4,7 +4,7 @@ import React from "react";
 import {
   Button,
   Col,
-  // Row,
+  Row,
   Container,
   Form,
   FormGroup,
@@ -75,46 +75,42 @@ export default class Login extends React.Component {
         <Container id="formContainer">
           <Container id="inputContainer">
             <Form>
-              {/* Form group for username */}
-              <FormGroup row>
-                <Label sm={4} for="username">
-                  Username
-                </Label>
-                <Col>
-                  <Input
-                    sm={8}
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="text"
-                    name="username"
-                    id="loginUsername"
-                  />
+              <Row form>
+                <Col md={6}>
+                  {/* Form group for username */}
+                  <FormGroup>
+                    <Label for="username">Username</Label>
+                    <Input
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="text"
+                      name="username"
+                      id="loginUsername"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* Form Group for Password */}
-              <FormGroup row>
-                <Label sm={4} for="password">
-                  Password
-                </Label>
-                <Col>
-                  <Input
-                    sm={8}
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="password"
-                    name="password"
-                    id="loginPassword"
-                  />
+                <Col md={6}>
+                  {/* Form Group for Password */}
+                  <FormGroup>
+                    <Label for="password">Password</Label>
+                    <Input
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="password"
+                      name="password"
+                      id="loginPassword"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
+              </Row>
             </Form>
           </Container>
           <Container id="loginBtnContainer">
             <Button
+              id="loginBtn"
               // inject handleLogin method into the button. Function is invoked onClick
               onClick={this.handleLogin}
-              id="loginBtn"
-              type="submit"
+              color="success"
             >
               Login
             </Button>
