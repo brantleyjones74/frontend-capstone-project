@@ -60,14 +60,18 @@ export default class ApplicationViews extends Component {
           exact
           path="/creels"
           render={props => {
-            return (
-              <CreelList
-                // pass activeUser, userpage, and props into the Component
-                userpage={this.userpage}
-                activeUser={this.activeUser}
-                {...props}
-              />
-            );
+            if (this.isUserAuthenticated()) {
+              return (
+                <CreelList
+                  // pass activeUser, userpage, and props into the Component
+                  userpage={this.userpage}
+                  activeUser={this.activeUser}
+                  {...props}
+                />
+              );
+            } else {
+              return <Welcome />;
+            }
           }}
         />
 

@@ -16,7 +16,10 @@ import {
 // import Logo component
 
 export default class NavBar extends React.Component {
-  // Constructor from ReactStrap. Call this before Component is mounted
+  isUserAuthenticated = () => sessionStorage.getItem("activeUser") !== null;
+  activeUser = () => parseInt(sessionStorage.getItem("activeUser"));
+
+  // constructor
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -52,10 +55,14 @@ export default class NavBar extends React.Component {
                 <NavLink href="/users">Users</NavLink>
               </NavItem>
               <NavItem>
-                <Link to="/">
-                  {/* inject the logoutUser function that clears session storage on click */}
-                  <Button onClick={this.logoutUser}>Logout</Button>
-                </Link>
+                {this.isUserAuthenticated() ? (
+                  <Link to="/">
+                    {/* inject the logoutUser function that clears session storage on click */}
+                    <Button onClick={this.logoutUser}>Logout</Button>
+                  </Link>
+                ) : (
+                  ""
+                )}
               </NavItem>
             </Nav>
           </Collapse>

@@ -75,12 +75,14 @@ export default class FishList extends Component {
           {/* map over array of fish and then pass fish into the FishCard component */}
           {this.state.fish.map(fish => {
             return (
-              <div id="fishCardContainer">
+              <div
+                // passes fish down to props. key has to be on div
+                key={fish.id}
+                className="fishCardContainer"
+              >
                 <FishCard
                   userpage={this.props.userpage}
                   // id of fish being displayed
-                  key={fish.id}
-                  // passes fish down to props
                   fish={fish}
                   // pass editFish function into FishCard component
                   editFish={this.editFish}
