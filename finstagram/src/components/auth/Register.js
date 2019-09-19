@@ -70,6 +70,7 @@ export default class Register extends React.Component {
           Authentication.addNewUser(newUserObject).then(userObject => {
             sessionStorage.setItem("activeUser", JSON.stringify(userObject.id));
             this.props.history.push("/");
+            this.props.changeLogoutState();
           });
         }
       });

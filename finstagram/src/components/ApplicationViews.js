@@ -30,9 +30,29 @@ export default class ApplicationViews extends Component {
     return (
       <React.Fragment>
         {/* route user to Register page and injects the Register component */}
-        <Route path="/register" component={Register} />
+        <Route
+          path="/register"
+          render={props => {
+            return (
+              <Register
+                {...props}
+                changeLogoutState={this.props.changeLogoutState}
+              />
+            );
+          }}
+        />
         {/* route user to login page and injects the Login component */}
-        <Route path="/login" component={Login} />
+        <Route
+          path="/login"
+          render={props => {
+            return (
+              <Login
+                {...props}
+                changeLogoutState={this.props.changeLogoutState}
+              />
+            );
+          }}
+        />
 
         {/* route if the user is authenticated render the Home Component otherwise render the Welcome comopnent */}
         <Route
