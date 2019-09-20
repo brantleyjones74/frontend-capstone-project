@@ -1,13 +1,15 @@
 // Purpose: Export FishEditModal component
 
 import React from "react";
-import { 
+import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
   Input,
+  FormGroup,
+  Label,
   Form
 } from "reactstrap";
 import * as firebase from "firebase/app";
@@ -154,6 +156,7 @@ export default class FishEditModal extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>Edit Fish</ModalHeader>
           <ModalBody>
+            Species:
             <Input
               id="fishSpecies"
               type="text"
@@ -161,6 +164,7 @@ export default class FishEditModal extends React.Component {
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishSpecies}
             />
+            Length In Inches:
             <Input
               id="fishLength"
               type="number"
@@ -168,6 +172,7 @@ export default class FishEditModal extends React.Component {
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishLength}
             />
+            Weight In Pounds:
             <Input
               id="fishWeight"
               type="number"
@@ -175,6 +180,7 @@ export default class FishEditModal extends React.Component {
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishWeight}
             />
+            Type of Lure:
             <Input
               id="fishLure"
               type="select"
@@ -187,15 +193,26 @@ export default class FishEditModal extends React.Component {
               <option value="Hard Plastic">Hard Plastic</option>
               <option value="Other">Other</option>
             </Input>
+            Photo:
             <Input
               type="file"
               id="photo"
               onChange={e => this.setState({ photo: e.target.files[0] })}
             />
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="checkbox"
+                  id="catchOfDay"
+                  onChange={this.inputFieldHandler}
+                />
+                Catch of the Day
+              </Label>
+            </FormGroup>
           </ModalBody>
           <ModalFooter>
             {/* when button is clicked update the existing fish info in json database */}
-            <Button color="primary" onClick={this.updateExistingFish}>
+            <Button size="sm" color="primary" onClick={this.updateExistingFish}>
               Update Fish
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

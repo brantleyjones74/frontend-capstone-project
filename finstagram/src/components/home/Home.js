@@ -11,8 +11,9 @@ import {
   Col
 } from "reactstrap";
 import UserManager from "../../modules/UserManager";
+import FollowManager from "../../modules/FollowManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
-// import CreelList from "../creel/CreelList";
+import CreelList from "../creel/CreelList";
 import "../home/Home.css";
 
 export default class Home extends Component {
@@ -24,7 +25,8 @@ export default class Home extends Component {
     city: "",
     state: "",
     bio: "",
-    photoUrl: ""
+    photoUrl: "",
+    connectionId: ""
   };
 
   // fetches the user's data for the specific card. Set state with data from API call
@@ -62,37 +64,32 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <div id="homeContainer">
-          <Row>
-            <Col>
-              <div id="profileCardContainer">
-                <Card id="profileCard" body inverse color="info">
-                  <ProfileEditModal
-                    id="profileEditModal"
-                    editUser={this.editUser}
-                    {...this.props}
-                  />
-                  <CardImg
-                    top
-                    width="100%"
-                    alt="Card image cap"
-                    id="profilePic"
-                    src={this.state.photoUrl}
-                  ></CardImg>
-                  <CardTitle className="">{this.state.username}</CardTitle>
-                  <CardText className="">
-                    {this.state.firstName} {this.state.lastName}
-                    <br />
-                    {this.state.city}
-                    {this.state.state}
-                    <br />
-                    {this.state.bio}
-                  </CardText>
-                </Card>
-              </div>
-            </Col>
-            <Col>Following List Here (Stretch Goal)</Col>
-            {/* <CreelList {...this.props} /> */}
-          </Row>
+          <div id="profileCardContainer">
+            <Card id="profileCard" body>
+              <ProfileEditModal
+                id="profileEditModal"
+                editUser={this.editUser}
+                {...this.props}
+              />
+              <CardImg
+                top
+                width="100%"
+                alt="Card image cap"
+                id="profilePic"
+                src={this.state.photoUrl}
+              ></CardImg>
+              <CardTitle className="">{this.state.username}</CardTitle>
+              <CardText className="">
+                {this.state.firstName} {this.state.lastName}
+                <br />
+                {this.state.city}
+                {this.state.state}
+                <br />
+                {this.state.bio}
+              </CardText>
+            </Card>
+          </div>
+          <CreelList userpage={this.props.userpage} {...this.props} />
         </div>
       </React.Fragment>
     );

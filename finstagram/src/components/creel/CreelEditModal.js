@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+  Container,
   Button,
   Modal,
   ModalHeader,
@@ -94,7 +95,7 @@ export default class CreelEditModal extends React.Component {
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
           {" "}
-          <Button color="primary" onClick={this.toggle}>
+          <Button size="sm" color="primary" onClick={this.toggle}>
             {/* when the button is clicked toggle the edit fish modal */}
             Edit Creel
           </Button>

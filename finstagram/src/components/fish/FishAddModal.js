@@ -121,7 +121,7 @@ export default class FishAddModal extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="success" onClick={this.toggle}>
+          <Button size="sm" color="success" onClick={this.toggle}>
             {/* when the button is clicked use toggle method to open modal */}
             Catch a Fish!
           </Button>
@@ -135,6 +135,7 @@ export default class FishAddModal extends React.Component {
         >
           <ModalHeader toggle={this.toggle}>New Fish</ModalHeader>
           <ModalBody>
+            Species:
             <Input
               id="fishSpecies"
               type="text"
@@ -142,6 +143,7 @@ export default class FishAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
+            Length in Inches:
             <Input
               id="fishLength"
               type="number"
@@ -149,6 +151,7 @@ export default class FishAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
+            Weight in Pounds:
             <Input
               id="fishWeight"
               type="number"
@@ -156,6 +159,7 @@ export default class FishAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
+            Type of Lure:
             <Input
               id="fishLure"
               type="select"
@@ -167,6 +171,7 @@ export default class FishAddModal extends React.Component {
               <option value="Hard Plastic">Hard Plastic</option>
               <option value="Other">Other</option>
             </Input>
+            Photo:
             <Input
               id="fishPic"
               type="file"
@@ -187,7 +192,7 @@ export default class FishAddModal extends React.Component {
           <ModalFooter>
             {/* when button is clicked submit new fish to database */}
             <Button color="primary" onClick={this.submitNewFish}>
-              Do Something
+              Add To Creel
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>
               Cancel

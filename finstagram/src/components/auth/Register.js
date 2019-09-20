@@ -3,6 +3,7 @@
 import React from "react";
 import {
   Button,
+  Row,
   Col,
   Container,
   Form,
@@ -83,186 +84,178 @@ export default class Register extends React.Component {
         <Container id="formContainer">
           <Container id="inputContainer">
             <Form>
-              {/* Form Group for Email */}
-              <FormGroup row>
-                <Label sm={4} for="email">
-                  Email
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="email"
-                    name="email"
-                    id="email"
-                  />
+              <Row form>
+                <Col md={6}>
+                  {/* Form Group for Email */}
+                  <FormGroup>
+                    <Label for="email">Email</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="email"
+                      name="email"
+                      id="email"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* Form Group for username */}
-              <FormGroup row>
-                <Label sm={4} for="username">
-                  Username
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    onChange={this.inputFieldHandler}
-                    type="text"
-                    name="username"
-                    id="username"
-                  />
+                <Col md={6}>
+                  {/* Form Group for username */}
+                  <FormGroup>
+                    <Label for="username">Username</Label>
+                    <Input
+                      className="registerInputs"
+                      onChange={this.inputFieldHandler}
+                      type="text"
+                      name="username"
+                      id="username"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* Form Group for first name */}
-              <FormGroup row>
-                <Label sm={4} for="firstName">
-                  First Name
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="text"
-                    name="firstName"
-                    id="firstName"
-                  />
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  {/* Form Group for first name */}
+                  <FormGroup>
+                    <Label for="firstName">First Name</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="text"
+                      name="firstName"
+                      id="firstName"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* FormGroup for last name */}
-              <FormGroup row>
-                <Label sm={4} for="lastName">
-                  Last Name
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="text"
-                    name="lastName"
-                    id="lastName"
-                  />
+                <Col md={6}>
+                  {/* FormGroup for last name */}
+                  <FormGroup>
+                    <Label for="lastName">Last Name</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="text"
+                      name="lastName"
+                      id="lastName"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
+              </Row>
               {/* FormGroup for City */}
-              <FormGroup row>
-                <Label sm={4} for="city">
-                  City
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="text"
-                    name="city"
-                    id="city"
-                  />
+              <Row form>
+                <Col md={6}>
+                  <FormGroup>
+                    <Label for="city">City</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="text"
+                      name="city"
+                      id="city"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* FormGroup for states */}
-              <FormGroup row>
-                <Label sm={4} for="state">
-                  State
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="select"
-                    name="state"
-                    id="state"
-                  >
-                    {/* option values for select the state user lives in */}
-                    <option value=", AL">Alabama</option>
-                    <option value=", AK">Alaska</option>
-                    <option value=", AZ">Arizona</option>
-                    <option value=", AR">Arkansas</option>
-                    <option value=", CA">California</option>
-                    <option value=", CO">Colorado</option>
-                    <option value=", CT">Connecticut</option>
-                    <option value=", DE">Delaware</option>
-                    <option value=", DC">D.C.</option>
-                    <option value=", FL">Florida</option>
-                    <option value=", GA">Georgia</option>
-                    <option value=", HI">Hawaii</option>
-                    <option value=", ID">Idaho</option>
-                    <option value=", IL">Illinois</option>
-                    <option value=", IN">Indiana</option>
-                    <option value=", IA">Iowa</option>
-                    <option value=", KS">Kansas</option>
-                    <option value=", KY">Kentucky</option>
-                    <option value=", LA">Louisiana</option>
-                    <option value=", ME">Maine</option>
-                    <option value=", MD">Maryland</option>
-                    <option value=", MA">Massachusetts</option>
-                    <option value=", MI">Michigan</option>
-                    <option value=", MN">Minnesota</option>
-                    <option value=", MS">Mississippi</option>
-                    <option value=", MO">Missouri</option>
-                    <option value=", MT">Montana</option>
-                    <option value=", NE">Nebraska</option>
-                    <option value=", NV">Nevada</option>
-                    <option value=", NH">New Hampshire</option>
-                    <option value=", NJ">New Jersey</option>
-                    <option value=", NM<">New Mexico</option>
-                    <option value=", NY">New York</option>
-                    <option value=", NC">North Carolina</option>
-                    <option value=", ND">North Dakota</option>
-                    <option value=", OH">Ohio</option>
-                    <option value=", OK">Oklahoma</option>
-                    <option value=", OR">Oregon</option>
-                    <option value=", PA">Pennsylvania</option>
-                    <option value=", RI">Rhode Island</option>
-                    <option value=", SC">South Carolina</option>
-                    <option value=", SD">South Dakota</option>
-                    <option value=", TN">Tennessee</option>
-                    <option value=", TX">Texas</option>
-                    <option value=", UT">Utah</option>
-                    <option value=", VT">Vermont</option>
-                    <option value=", VA">Virginia</option>
-                    <option value=", WA">Washington</option>
-                    <option value=", WV">West Virginia</option>
-                    <option value=", WI">Wisconsin</option>
-                    <option value=", WY">Wyoming</option>
-                  </Input>
+                <Col md={6}>
+                  {/* FormGroup for states */}
+                  <FormGroup>
+                    <Label for="state"> State</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="select"
+                      name="state"
+                      id="state"
+                    >
+                      {/* option values for select the state user lives in */}
+                      <option value=", AL">Alabama</option>
+                      <option value=", AK">Alaska</option>
+                      <option value=", AZ">Arizona</option>
+                      <option value=", AR">Arkansas</option>
+                      <option value=", CA">California</option>
+                      <option value=", CO">Colorado</option>
+                      <option value=", CT">Connecticut</option>
+                      <option value=", DE">Delaware</option>
+                      <option value=", DC">D.C.</option>
+                      <option value=", FL">Florida</option>
+                      <option value=", GA">Georgia</option>
+                      <option value=", HI">Hawaii</option>
+                      <option value=", ID">Idaho</option>
+                      <option value=", IL">Illinois</option>
+                      <option value=", IN">Indiana</option>
+                      <option value=", IA">Iowa</option>
+                      <option value=", KS">Kansas</option>
+                      <option value=", KY">Kentucky</option>
+                      <option value=", LA">Louisiana</option>
+                      <option value=", ME">Maine</option>
+                      <option value=", MD">Maryland</option>
+                      <option value=", MA">Massachusetts</option>
+                      <option value=", MI">Michigan</option>
+                      <option value=", MN">Minnesota</option>
+                      <option value=", MS">Mississippi</option>
+                      <option value=", MO">Missouri</option>
+                      <option value=", MT">Montana</option>
+                      <option value=", NE">Nebraska</option>
+                      <option value=", NV">Nevada</option>
+                      <option value=", NH">New Hampshire</option>
+                      <option value=", NJ">New Jersey</option>
+                      <option value=", NM<">New Mexico</option>
+                      <option value=", NY">New York</option>
+                      <option value=", NC">North Carolina</option>
+                      <option value=", ND">North Dakota</option>
+                      <option value=", OH">Ohio</option>
+                      <option value=", OK">Oklahoma</option>
+                      <option value=", OR">Oregon</option>
+                      <option value=", PA">Pennsylvania</option>
+                      <option value=", RI">Rhode Island</option>
+                      <option value=", SC">South Carolina</option>
+                      <option value=", SD">South Dakota</option>
+                      <option value=", TN">Tennessee</option>
+                      <option value=", TX">Texas</option>
+                      <option value=", UT">Utah</option>
+                      <option value=", VT">Vermont</option>
+                      <option value=", VA">Virginia</option>
+                      <option value=", WA">Washington</option>
+                      <option value=", WV">West Virginia</option>
+                      <option value=", WI">Wisconsin</option>
+                      <option value=", WY">Wyoming</option>
+                    </Input>
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* Form Group for password */}
-              <FormGroup row>
-                <Label sm={4} for="password">
-                  Password
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="password"
-                    name="password"
-                    id="password"
-                  />
+              </Row>
+              <Row form>
+                <Col md={6}>
+                  {/* Form Group for password */}
+                  <FormGroup>
+                    <Label for="password">Password</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="password"
+                      name="password"
+                      id="password"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
-              {/* Form Group for confirm password */}
-              <FormGroup row>
-                <Label sm={4} for="confirmPassword">
-                  Confirm Password
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    className="registerInputs"
-                    // inject inputFieldHandler method into the input. This will update state when the value changes
-                    onChange={this.inputFieldHandler}
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                  />
+                <Col md={6}>
+                  {/* Form Group for confirm password */}
+                  <FormGroup>
+                    <Label for="confirmPassword">Confirm Password</Label>
+                    <Input
+                      className="registerInputs"
+                      // inject inputFieldHandler method into the input. This will update state when the value changes
+                      onChange={this.inputFieldHandler}
+                      type="password"
+                      name="confirmPassword"
+                      id="confirmPassword"
+                    />
+                  </FormGroup>
                 </Col>
-              </FormGroup>
+              </Row>
             </Form>
           </Container>
           <Container id="registerBtnContainer">
@@ -270,6 +263,7 @@ export default class Register extends React.Component {
               id="registerBtn"
               // inject HandleRegistration method into the button and on click invokes the function. This will post the data to the API on click
               onClick={this.handleRegistration}
+              color="success"
             >
               Register
             </Button>

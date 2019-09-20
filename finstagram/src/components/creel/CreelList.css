@@ -1,9 +1,5 @@
-#creelListContainer {
-  display: flex;
-  flex-direction: column;
-}
-
 #creelCardContainer {
+  margin: 2%;
   display: flex;
-  justify-content: space-around;
+  flex-flow: row wrap;
 }

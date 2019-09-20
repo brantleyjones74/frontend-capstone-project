@@ -1,7 +1,7 @@
 // Purpose: Exports FishList component
 
 import React, { Component } from "react";
-// import { Col, Row } from "reactstrap";
+import { Container } from "reactstrap";
 import FishCard from "./FishCard";
 import FishManager from "../../modules/FishManager";
 import FishAddModal from "./FishAddModal";
@@ -62,39 +62,35 @@ export default class FishList extends Component {
   render() {
     return (
       <React.Fragment>
-        <section>
+        <Container>
+          <h3>Fish</h3>
           {/* ternary conditional statement. if the userId in the creelobj from state is = to the activeUser then render the FishAddModal. if not render an empty string */}
           {this.state.creel.userId === this.props.activeUser() ? (
             <FishAddModal addNewFish={this.addNewFish} {...this.props} />
           ) : (
             ""
           )}
-        </section>
-        <div id="fishListContainer">
-          <h3>Fish</h3>
+        </Container>
+        <Container id="fishListContainer">
           {/* map over array of fish and then pass fish into the FishCard component */}
           {this.state.fish.map(fish => {
             return (
-              <div
-                // passes fish down to props. key has to be on div
-                key={fish.id}
+              <FishCard
                 className="fishCardContainer"
-              >
-                <FishCard
-                  userpage={this.props.userpage}
-                  // id of fish being displayed
-                  fish={fish}
-                  // pass editFish function into FishCard component
-                  editFish={this.editFish}
-                  // pass deleteFish function into FishCard component
-                  deleteFish={this.deleteFish}
-                  // pass props into Fish Card component
-                  {...this.props}
-                />
-              </div>
+                key={fish.id}
+                userpage={this.props.userpage}
+                // id of fish being displayed
+                fish={fish}
+                // pass editFish function into FishCard component
+                editFish={this.editFish}
+                // pass deleteFish function into FishCard component
+                deleteFish={this.deleteFish}
+                // pass props into Fish Card component
+                {...this.props}
+              />
             );
           })}
-        </div>
+        </Container>
       </React.Fragment>
     );
   }

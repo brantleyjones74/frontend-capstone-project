@@ -14,6 +14,7 @@ import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import "../profile/ProfileCard.css";
+import CreelEditModal from "../creel/CreelEditModal";
 
 export default class ProfileCard extends Component {
   // set initial state
@@ -94,7 +95,11 @@ export default class ProfileCard extends Component {
           </Row>
           <div>
             {/* inject CreelList into the component and pass props and userpage into the component */}
-            <CreelList userpage={this.props.userpage} {...this.props} />
+            <CreelList
+              key={this.props.id}
+              userpage={this.props.userpage}
+              {...this.props}
+            />
           </div>
         </React.Fragment>
       </Container>
