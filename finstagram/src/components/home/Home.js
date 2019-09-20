@@ -1,17 +1,8 @@
 // Purpose: Displays the details of the active user.
 // I didn't import the ProfileCard component because the data wasn't rendering. Clean this up for stretch goal?
 import React, { Component } from "react";
-import {
-  Card,
-  // Container,
-  CardImg,
-  CardTitle,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardImg, CardTitle, CardText } from "reactstrap";
 import UserManager from "../../modules/UserManager";
-import FollowManager from "../../modules/FollowManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
 import "../home/Home.css";

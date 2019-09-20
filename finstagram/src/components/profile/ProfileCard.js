@@ -14,7 +14,6 @@ import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import "../profile/ProfileCard.css";
-import CreelEditModal from "../creel/CreelEditModal";
 
 export default class ProfileCard extends Component {
   // set initial state

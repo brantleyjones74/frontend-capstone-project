@@ -1,7 +1,6 @@
 // Purpose: Export ProfileEditModal that can allow a user to add a profile picture and a biography.
 
 import React from "react";
-import { Link } from "react-router-dom";
 import {
   Button,
   Modal,
@@ -9,9 +8,7 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  // Label, add for better UX
   Form
-  // FormGroup add later
 } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/storage";
