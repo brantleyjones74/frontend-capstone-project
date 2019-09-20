@@ -4,6 +4,8 @@
 }
 
 #creelCardContainer {
+  margin: 3%;
   display: flex;
-  justify-content: space-around;
+  flex-flow: row wrap;
+  justify-content: flex-start;
 }

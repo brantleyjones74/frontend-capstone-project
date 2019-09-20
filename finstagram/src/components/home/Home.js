@@ -92,6 +92,9 @@ export default class Home extends Component {
                 </Card>
               </div>
             </Col>
+            <Col></Col>
+          </Row>
+          <Row>
             <Col>
               <CreelList userpage={this.props.userpage} {...this.props} />
             </Col>
