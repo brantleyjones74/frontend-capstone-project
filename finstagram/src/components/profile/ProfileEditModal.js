@@ -10,7 +10,7 @@ import {
   ModalFooter,
   Input,
   // Label, add for better UX
-  Form,
+  Form
   // FormGroup add later
 } from "reactstrap";
 import * as firebase from "firebase/app";
@@ -138,9 +138,9 @@ export default class ProfileEditModal extends React.Component {
       <div>
         {/* Form and Button that will invoke toggle method and open the modal. */}
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Link id="editProfileLink" to="#" onClick={this.toggle}>
+          <Button id="editProfileButton" to="#" onClick={this.toggle}>
             Edit Profile
-          </Link>
+          </Button>
         </Form>
         <Modal
           isOpen={this.state.modal}

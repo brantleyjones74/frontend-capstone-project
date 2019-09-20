@@ -212,7 +212,7 @@ export default class FishEditModal extends React.Component {
           </ModalBody>
           <ModalFooter>
             {/* when button is clicked update the existing fish info in json database */}
-            <Button color="primary" onClick={this.updateExistingFish}>
+            <Button size="sm" color="primary" onClick={this.updateExistingFish}>
               Update Fish
             </Button>{" "}
             <Button color="secondary" onClick={this.toggle}>

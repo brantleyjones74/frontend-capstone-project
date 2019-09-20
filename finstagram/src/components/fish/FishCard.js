@@ -37,11 +37,11 @@ export default class FishCard extends Component {
       <Row>
         <Col sm="6">
           <Card body>
-            <CardTitle className="text-danger">
+            <CardTitle className="text-success">
               {this.props.fish.species}
             </CardTitle>
             <CardImg src={this.props.fish.photoUrl}></CardImg>
-            <CardText className="text-danger">
+            <CardText className="text-success">
               {this.props.fish.length} inches
               <br />
               {this.props.fish.weight} pounds
@@ -53,6 +53,8 @@ export default class FishCard extends Component {
               <div>
                 <FishEditModal {...this.props} />
                 <Button
+                  color="danger"
+                  size="sm"
                   onClick={() => this.props.deleteFish(this.props.fish.id)}
                 >
                   Delete Fish

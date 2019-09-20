@@ -77,18 +77,22 @@ export default class CreelList extends Component {
               />
             </Col>
           </Row>
-          {this.state.creel.map(creel => {
-            return (
-              <CreelCard
-                key={creel.id}
-                userpage={this.props.userpage}
-                creel={creel}
-                editCreel={this.editCreel}
-                deleteCreel={this.deleteCreel}
-                {...this.props}
-              />
-            );
-          })}
+          <Row>
+            <Container id="creelCardContainer">
+              {this.state.creel.map(creel => {
+                return (
+                  <CreelCard
+                    key={creel.id}
+                    userpage={this.props.userpage}
+                    creel={creel}
+                    editCreel={this.editCreel}
+                    deleteCreel={this.deleteCreel}
+                    {...this.props}
+                  />
+                );
+              })}
+            </Container>
+          </Row>
         </Container>
       );
     } else {
@@ -103,6 +107,7 @@ export default class CreelList extends Component {
             {this.state.creel.map(creel => {
               return (
                 <CreelCard
+                  key={creel.id}
                   creel={creel}
                   editCreel={this.editCreel}
                   deleteCreel={this.deleteCreel}
@@ -119,6 +124,7 @@ export default class CreelList extends Component {
             {this.state.creel.map(creel => {
               return (
                 <CreelCard
+                  key={creel.id}
                   creel={creel}
                   editCreel={this.editCreel}
                   deleteCreel={this.deleteCreel}

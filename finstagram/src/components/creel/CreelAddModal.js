@@ -81,7 +81,7 @@ export default class CreelAddModal extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="success" onClick={this.toggle}>
+          <Button size="sm" color="success" onClick={this.toggle}>
             {/* when the button is clicked use toggle method to open modal */}
             Log New Trip
           </Button>
@@ -116,7 +116,7 @@ export default class CreelAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
-            Notes: 
+            Notes:
             <Input
               id="notes"
               type="textarea"

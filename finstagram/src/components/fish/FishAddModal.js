@@ -121,7 +121,7 @@ export default class FishAddModal extends React.Component {
     return (
       <div>
         <Form inline onSubmit={e => e.preventDefault()}>
-          <Button color="success" onClick={this.toggle}>
+          <Button size="sm" color="success" onClick={this.toggle}>
             {/* when the button is clicked use toggle method to open modal */}
             Catch a Fish!
           </Button>

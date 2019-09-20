@@ -64,41 +64,32 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <div id="homeContainer">
-          <Row>
-            <Col>
-              <div id="profileCardContainer">
-                <Card id="profileCard" body inverse color="info">
-                  <ProfileEditModal
-                    id="profileEditModal"
-                    editUser={this.editUser}
-                    {...this.props}
-                  />
-                  <CardImg
-                    top
-                    width="100%"
-                    alt="Card image cap"
-                    id="profilePic"
-                    src={this.state.photoUrl}
-                  ></CardImg>
-                  <CardTitle className="">{this.state.username}</CardTitle>
-                  <CardText className="">
-                    {this.state.firstName} {this.state.lastName}
-                    <br />
-                    {this.state.city}
-                    {this.state.state}
-                    <br />
-                    {this.state.bio}
-                  </CardText>
-                </Card>
-              </div>
-            </Col>
-            <Col></Col>
-          </Row>
-          <Row>
-            <Col>
-              <CreelList userpage={this.props.userpage} {...this.props} />
-            </Col>
-          </Row>
+          <div id="profileCardContainer">
+            <Card id="profileCard" body>
+              <ProfileEditModal
+                id="profileEditModal"
+                editUser={this.editUser}
+                {...this.props}
+              />
+              <CardImg
+                top
+                width="100%"
+                alt="Card image cap"
+                id="profilePic"
+                src={this.state.photoUrl}
+              ></CardImg>
+              <CardTitle className="">{this.state.username}</CardTitle>
+              <CardText className="">
+                {this.state.firstName} {this.state.lastName}
+                <br />
+                {this.state.city}
+                {this.state.state}
+                <br />
+                {this.state.bio}
+              </CardText>
+            </Card>
+          </div>
+          <CreelList userpage={this.props.userpage} {...this.props} />
         </div>
       </React.Fragment>
     );
