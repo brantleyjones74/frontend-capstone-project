@@ -2,7 +2,15 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, Button, CardTitle, CardText } from "reactstrap";
+import {
+  Row,
+  Col,
+  Container,
+  Card,
+  Button,
+  CardTitle,
+  CardText
+} from "reactstrap";
 import CreelEditModal from "./CreelEditModal";
 import "../creel/CreelCard.css";
 
@@ -20,34 +28,49 @@ export default class FishCard extends Component {
         </CardText>
         {/* link to all fish in a specific creel */}
         <Container className="buttonContainer">
-          <Link to={`/creels/${this.props.creel.id}`}>
-            <Button size="sm">Details</Button>
-          </Link>
+          <Row>
+            <Col>
+              <Link to={`/creels/${this.props.creel.id}`}>
+                <Button size="sm">Details</Button>
+              </Link>
+            </Col>
+            {/* if statement injected into JSX */}
+            {this.props.userpage ? (
+              <React.Fragment>
+                <Col>
+                  <CreelEditModal {...this.props} />
+                </Col>
+                <Col>
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => this.props.deleteCreel(this.props.creel.id)}
+                  >
+                    Delete
+                  </Button>
+                </Col>
+              </React.Fragment>
+            ) : this.props.userId === this.props.activeUser() ? (
+              <React.Fragment>
+                <Col>
+                  <CreelEditModal {...this.props} />
+                </Col>
+                <Col>
+                  <Button
+                    size="sm"
+                    color="danger"
+                    onClick={() => this.props.deleteCreel(this.props.creel.id)}
+                  >
+                    Delete
+                  </Button>
+                </Col>
+              </React.Fragment>
+            ) : (
+              ""
+            )}
+            <Col></Col>
+          </Row>
         </Container>
-        {/* if statement injected into JSX */}
-        {this.props.userpage ? (
-          <Container className="buttonContainer">
-            <CreelEditModal {...this.props} />
-            <Button
-              color="danger"
-              onClick={() => this.props.deleteCreel(this.props.creel.id)}
-            >
-              Delete
-            </Button>
-          </Container>
-        ) : this.props.userId === this.props.activeUser() ? (
-          <React.Fragment>
-            <CreelEditModal {...this.props} />
-            <Button
-              color="danger"
-              onClick={() => this.props.deleteCreel(this.props.creel.id)}
-            >
-              Delete
-            </Button>
-          </React.Fragment>
-        ) : (
-          ""
-        )}
       </Card>
     );
   }

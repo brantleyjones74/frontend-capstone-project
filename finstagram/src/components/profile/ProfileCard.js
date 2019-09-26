@@ -61,7 +61,7 @@ export default class ProfileCard extends Component {
       <Container id="profileCardContainer">
         <React.Fragment>
           <Row>
-            <Col sm="6">
+            <Col sm={6}>
               <Card id="profileCardBody" body>
                 {/* inject ProfileEditModal. pass edit user function to it. */}
                 {this.props.userpage ? (
@@ -91,15 +91,16 @@ export default class ProfileCard extends Component {
                 </CardText>
               </Card>
             </Col>
+            <Col sm={6}>
+              {/* inject CreelList into the component and pass props and userpage into the component */}
+              <CreelList
+                key={this.props.id}
+                userpage={this.props.userpage}
+                {...this.props}
+              />
+            </Col>
           </Row>
-          <div>
-            {/* inject CreelList into the component and pass props and userpage into the component */}
-            <CreelList
-              key={this.props.id}
-              userpage={this.props.userpage}
-              {...this.props}
-            />
-          </div>
+          <div></div>
         </React.Fragment>
       </Container>
     );
