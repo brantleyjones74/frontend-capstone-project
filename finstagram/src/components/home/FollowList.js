@@ -15,6 +15,7 @@ export default class FollowList extends Component {
       this.setState({
         users: users
       });
+      console.log(this.state.users);
     });
   };
 

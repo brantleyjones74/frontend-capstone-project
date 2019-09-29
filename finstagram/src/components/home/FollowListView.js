@@ -9,9 +9,11 @@ export default class FollowListView extends Component {
         {this.props.users.id === this.props.connections.otherUserId ? (
           <React.Fragment>
             <Link to={`/users/${this.props.users.id}`}>
-              <Button>View Profile</Button>
+              <Button size="sm">View Profile</Button>
             </Link>
             <Button
+              size="sm"
+              color="danger"
               onClick={() => this.props.unfollowUser(this.props.connections.id)}
             >
               Unfollow

@@ -40,14 +40,24 @@ export default class Home extends Component {
 
   // fetch followers and set state for connections
   fetchConnections = () => {
-    ConnectionManager.getConnections(this.props.activeUser()).then(connections => {
-      this.setState({ connections: connections });
-      console.log(this.state.connections);
+    ConnectionManager.getConnections(this.props.activeUser()).then(
+      connections => {
+        this.setState({ connections: connections });
+      }
+    );
+  };
+
+  fetchAllUsers = () => {
+    UserManager.getAllUsers().then(users => {
+      this.setState({
+        users: users
+      });
     });
   };
 
   componentDidMount() {
     this.fetchActiveUser();
+    this.fetchAllUsers();
     this.fetchConnections();
   }
 
@@ -108,6 +118,7 @@ export default class Home extends Component {
                     key={connections.id}
                     connections={connections}
                     userpage={this.props.userpage}
+                    {...this.props}
                   />
                 );
               })}
