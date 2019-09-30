@@ -6,15 +6,15 @@ export default class FollowListView extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.users.id === this.props.connections.otherUserId ? (
+        {this.props.user.id === this.props.connections.otherUserId ? (
           <Container>
             <Card>
               <Row>
                 <Col>
-                  <div>{this.props.users.username}</div>
+                  <div>{this.props.user.username}</div>
                 </Col>
                 <Col>
-                  <Link to={`/users/${this.props.users.id}`}>
+                  <Link to={`/users/${this.props.user.id}`}>
                     <Button size="sm">View Profile</Button>
                   </Link>
                 </Col>

@@ -5,10 +5,11 @@ import FollowListView from "../home/FollowListView";
 
 export default class FollowList extends Component {
   state = {
-    users: []
+    users: [],
+    connections: []
   };
 
-  // fetch all users for followers
+  // fetch users
   fetchUsers = () => {
     UserManager.getAllUsers().then(users => {
       this.setState({
@@ -17,13 +18,26 @@ export default class FollowList extends Component {
     });
   };
 
+  // fetch all users for followers
+  fetchConnections = () => {
+    ConnectionManager.getConnections(this.props.activeUser()).then(
+      connections => {
+        this.setState({
+          connections: connections
+        });
+      }
+    );
+  };
+
   componentDidMount() {
     this.fetchUsers();
+    this.fetchConnections();
   }
 
+  // unfollow user
   unfollowUser = id => {
     ConnectionManager.deleteConnection(id).then(() => {
-      this.fetchUsers();
+      this.fetchConnections();
     });
   };
 
@@ -31,12 +45,13 @@ export default class FollowList extends Component {
     return (
       <React.Fragment>
         <div>
-          {this.state.users.map(users => {
+          {this.state.users.map(user => {
             return (
               <FollowListView
-                key={users.id}
+                key={user.id}
                 unfollowUser={this.unfollowUser}
-                users={users}
+                user={user}
+                connection={this.state.connections}
                 {...this.props}
               />
             );

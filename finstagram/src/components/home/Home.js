@@ -120,7 +120,7 @@ export default class Home extends Component {
             </Col>
           </Row>
           <Row>
-            <Col>
+            {/* <Col>
               <Container>
                 <h3>Connections</h3>
                 {this.state.connections.map(connections => {
@@ -134,7 +134,7 @@ export default class Home extends Component {
                   );
                 })}
               </Container>
-            </Col>
+            </Col> */}
           </Row>
         </div>
       </React.Fragment>

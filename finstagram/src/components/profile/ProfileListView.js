@@ -29,7 +29,7 @@ export default class ProfileListView extends React.Component {
     // create new object to pass through addNewFollow
     const newConnectionObj = {
       userId: this.props.activeUser(),
-      otherUserId: this.props.users.id,
+      otherUserId: this.props.user.id,
       timeStamp: Date.now()
     };
     // invokes addNewFollow method from FollowManager module.
@@ -57,7 +57,7 @@ export default class ProfileListView extends React.Component {
                     <Button size="sm">View</Button>
                   </Link>
                 </Col>
-                <Col sm={4}>
+                {/* <Col sm={4}>
                   {this.props.user.friend ? (
                     ""
                   ) : (
@@ -65,7 +65,7 @@ export default class ProfileListView extends React.Component {
                       Follow
                     </Button>
                   )}
-                </Col>
+                </Col> */}
               </Row>
             </div>
           )}
