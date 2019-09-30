@@ -1,7 +1,15 @@
 // Purpose: Displays the details of the active user.
 // I didn't import the ProfileCard component because the data wasn't rendering. Clean this up for stretch goal?
 import React, { Component } from "react";
-import { Row, Col, Card, CardImg, CardTitle, CardText } from "reactstrap";
+import {
+  Row,
+  Col,
+  Container,
+  Card,
+  CardImg,
+  CardTitle,
+  CardText
+} from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
@@ -78,50 +86,54 @@ export default class Home extends Component {
       <React.Fragment>
         <div id="homeContainer">
           <Row>
-            <Col>
-              <div id="profileCardContainer">
-                <Card id="profileCard" body>
-                  <ProfileEditModal
-                    id="profileEditModal"
-                    editUser={this.editUser}
-                    {...this.props}
-                  />
-                  <CardImg
-                    top
-                    width="100%"
-                    alt="Card image cap"
-                    id="profilePic"
-                    src={this.state.photoUrl}
-                  ></CardImg>
-                  <CardTitle className="">{this.state.username}</CardTitle>
-                  <CardText className="">
-                    {this.state.firstName} {this.state.lastName}
-                    <br />
-                    {this.state.city}
-                    {this.state.state}
-                    <br />
-                    {this.state.bio}
-                  </CardText>
-                </Card>
-              </div>
-            </Col>
+            <Container>
+              <Col>
+                <div id="profileCardContainer">
+                  <Card id="profileCard" body>
+                    <CardImg
+                      top
+                      width="100%"
+                      alt="Card image cap"
+                      id="profilePic"
+                      src={this.state.photoUrl}
+                    ></CardImg>
+                    <CardTitle className="">{this.state.username}</CardTitle>
+                    <CardText className="">
+                      {this.state.firstName} {this.state.lastName}
+                      <br />
+                      {this.state.city}
+                      {this.state.state}
+                      <br />
+                      {this.state.bio}
+                    </CardText>
+                    <ProfileEditModal
+                      id="profileEditModal"
+                      editUser={this.editUser}
+                      {...this.props}
+                    />
+                  </Card>
+                </div>
+              </Col>
+            </Container>
             <Col sm={6}>
               <CreelList userpage={this.props.userpage} {...this.props} />
             </Col>
           </Row>
           <Row>
             <Col>
-              <h3>Connections</h3>
-              {this.state.connections.map(connections => {
-                return (
-                  <FollowList
-                    key={connections.id}
-                    connections={connections}
-                    userpage={this.props.userpage}
-                    {...this.props}
-                  />
-                );
-              })}
+              <Container>
+                <h3>Connections</h3>
+                {this.state.connections.map(connections => {
+                  return (
+                    <FollowList
+                      key={connections.id}
+                      connections={connections}
+                      userpage={this.props.userpage}
+                      {...this.props}
+                    />
+                  );
+                })}
+              </Container>
             </Col>
           </Row>
         </div>

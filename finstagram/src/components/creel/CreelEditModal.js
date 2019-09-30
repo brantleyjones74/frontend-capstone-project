@@ -96,7 +96,7 @@ export default class CreelEditModal extends React.Component {
           {" "}
           <Button size="sm" color="primary" onClick={this.toggle}>
             {/* when the button is clicked toggle the edit fish modal */}
-            Edit Creel
+            Edit
           </Button>
         </Form>
         <Modal

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import UserManager from "../../modules/UserManager";
 import ConnectionManager from "../../modules/ConnectionManager";
 import FollowListView from "../home/FollowListView";
@@ -15,7 +14,6 @@ export default class FollowList extends Component {
       this.setState({
         users: users
       });
-      console.log(this.state.users);
     });
   };
 

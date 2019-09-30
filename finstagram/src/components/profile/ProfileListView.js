@@ -17,7 +17,9 @@ import ConnectionManager from "../../modules/ConnectionManager";
 export default class ProfileListView extends React.Component {
   // set initial state
   state = {
-    follow: []
+    follow: [],
+    userId: "",
+    otherUserId: ""
   };
 
   // FOLLOWING FOR STRETCH GOAL
@@ -38,32 +40,35 @@ export default class ProfileListView extends React.Component {
     return (
       <Container id="cardContainer">
         <Card className="profileSummaryCard">
-          <CardTitle>{this.props.users.username}</CardTitle>
-          {/* renders username through props */}
-          <CardText>
-            {this.props.users.city}
-            {this.props.users.state}
-          </CardText>
-          <Row>
-            {/* Nest a Button inside of a Link that routes active user to a specific user's profile using the id of the user */}
-            <Col sm={4}>
-              <Link to={`/users/${this.props.users.id}`}>
-                <Button size="sm">View Profile</Button>
-              </Link>
-            </Col>
-            {/* CONDITIONAL RENDERING OF BUTTON */}
-            {/* {this.props.userpage ? (
-          ) : this.state.follow.userId === this.props.activeUser() ? (
-          ) : (
+          {/* don't render active user */}
+          {this.props.activeUser() === this.props.user.id ? (
             ""
-          )} */}
-            <Col sm={4}>
-              <Button size="sm" onClick={this.followUser}>
-                Follow
-              </Button>
-            </Col>
-            <Col sm={4}></Col>
-          </Row>
+          ) : (
+            <div>
+              <CardTitle>{this.props.user.username}</CardTitle>
+              <CardText>
+                {this.props.user.city}
+                {this.props.user.state}
+              </CardText>
+              <Row>
+                {/* Nest a Button inside of a Link that routes active user to a specific user's profile using the id of the user */}
+                <Col sm={4}>
+                  <Link to={`/users/${this.props.user.id}`}>
+                    <Button size="sm">View</Button>
+                  </Link>
+                </Col>
+                <Col sm={4}>
+                  {this.props.user.friend ? (
+                    ""
+                  ) : (
+                    <Button size="sm" onClick={this.followUser}>
+                      Follow
+                    </Button>
+                  )}
+                </Col>
+              </Row>
+            </div>
+          )}
         </Card>
       </Container>
     );

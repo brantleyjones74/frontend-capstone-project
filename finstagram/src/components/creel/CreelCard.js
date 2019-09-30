@@ -31,7 +31,7 @@ export default class FishCard extends Component {
           <Row>
             <Col>
               <Link to={`/creels/${this.props.creel.id}`}>
-                <Button size="sm">Details</Button>
+                <Button size="sm">View</Button>
               </Link>
             </Col>
             {/* if statement injected into JSX */}

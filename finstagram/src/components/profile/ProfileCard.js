@@ -1,15 +1,7 @@
 // Purpose: Export ProfileCard that renders the details of a specific user and displays their CreelList component.
 
 import React, { Component } from "react";
-import {
-  Card,
-  Container,
-  CardImg,
-  CardTitle,
-  CardText,
-  Row,
-  Col
-} from "reactstrap";
+import { Card, CardImg, CardTitle, CardText, Row, Col } from "reactstrap";
 import UserManager from "../../modules/UserManager";
 import CreelList from "../creel/CreelList";
 import ProfileEditModal from "../profile/ProfileEditModal";
@@ -58,11 +50,21 @@ export default class ProfileCard extends Component {
 
   render() {
     return (
-      <Container id="profileCardContainer">
-        <React.Fragment>
+      <React.Fragment>
+        <div id="profileContainer">
           <Row>
             <Col sm={6}>
               <Card id="profileCardBody" body>
+                <CardImg id="profileImage" src={this.state.photoUrl}></CardImg>
+                <CardTitle>{this.state.username}</CardTitle>
+                <CardText className="text-success">
+                  {this.state.firstName} {this.state.lastName}
+                  <br />
+                  {this.state.city}
+                  {this.state.state}
+                  <br />
+                  {this.state.bio}
+                </CardText>
                 {/* inject ProfileEditModal. pass edit user function to it. */}
                 {this.props.userpage ? (
                   <ProfileEditModal
@@ -79,16 +81,6 @@ export default class ProfileCard extends Component {
                 ) : (
                   ""
                 )}
-                <CardImg id="profileImage" src={this.state.photoUrl}></CardImg>
-                <CardTitle>{this.state.username}</CardTitle>
-                <CardText className="text-success">
-                  {this.state.firstName} {this.state.lastName}
-                  <br />
-                  {this.state.city}
-                  {this.state.state}
-                  <br />
-                  {this.state.bio}
-                </CardText>
               </Card>
             </Col>
             <Col sm={6}>
@@ -100,9 +92,8 @@ export default class ProfileCard extends Component {
               />
             </Col>
           </Row>
-          <div></div>
-        </React.Fragment>
-      </Container>
+        </div>
+      </React.Fragment>
     );
   }
 }
