@@ -2,17 +2,24 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, Container, Card, CardTitle, CardText } from "reactstrap";
+import {
+  Col,
+  Row,
+  Button,
+  Container,
+  Card,
+  CardTitle,
+  CardText
+} from "reactstrap";
 import "../profile/ProfileListView.css";
-import FollowManager from "../../modules/FollowManager";
+import ConnectionManager from "../../modules/ConnectionManager";
 
 export default class ProfileListView extends React.Component {
   // set initial state
   state = {
     follow: [],
     userId: "",
-    otherUserId: "",
-    timeStamp: Date.now()
+    otherUserId: ""
   };
 
   // FOLLOWING FOR STRETCH GOAL
@@ -20,67 +27,48 @@ export default class ProfileListView extends React.Component {
   followUser = evt => {
     evt.preventDefault();
     // create new object to pass through addNewFollow
-    const newFollowObj = {
+    const newConnectionObj = {
       userId: this.props.activeUser(),
-      otherUserId: this.props.users.id,
+      otherUserId: this.props.user.id,
       timeStamp: Date.now()
     };
     // invokes addNewFollow method from FollowManager module.
-    FollowManager.addNewFollow(newFollowObj).then(
-      FollowManager.getFollowers(
-        this.props.activeUser(),
-        this.props.users.id
-      ).then(follow => {
-        this.setState({
-          follow: follow
-        });
-        console.log(this.state);
-      })
-    );
+    ConnectionManager.addNewConnection(newConnectionObj);
   };
-
-  // function that checks for followers
-  // console logged response and state was only empty arrays
-  // checkFollow = () => {
-  //   FollowManager.getFollowers(
-  //     this.props.activeUser(),
-  //     this.props.users.id
-  //   ).then(follow => {
-  //     this.setState({
-  //       follow: follow
-  //     });
-  // console.log(this.state)
-  //   });
-  // };
-
-  componentDidMount() {
-    // this.checkFollow();
-  }
 
   render() {
     return (
       <Container id="cardContainer">
         <Card className="profileSummaryCard">
-          <CardTitle>
-            {/* renders first and last name of users through props */}
-            {this.props.users.firstName} {this.props.users.lastName}
-          </CardTitle>
-          {/* renders username through props */}
-          <CardText>Username: {this.props.users.username}</CardText>
-          <CardText>
-            Location: {this.props.users.city}, {this.props.users.state}
-          </CardText>
-          {/* Nest a Button inside of a Link that routes active user to a specific user's profile using the id of the user */}
-          <Link to={`/users/${this.props.users.id}`}>
-            <Button>View Profile</Button>
-          </Link>
-          {/* CONDITIONAL RENDERING OF BUTTON */}
-          {/* {this.props.userpage ? (
-          ) : this.state.follow.userId === this.props.activeUser() ? (
-          ) : (
+          {/* don't render active user */}
+          {this.props.activeUser() === this.props.user.id ? (
             ""
-          )} */}
-          <Button onClick={this.followUser}>Follow</Button>
+          ) : (
+            <div>
+              <CardTitle>{this.props.user.username}</CardTitle>
+              <CardText>
+                {this.props.user.city}
+                {this.props.user.state}
+              </CardText>
+              <Row>
+                {/* Nest a Button inside of a Link that routes active user to a specific user's profile using the id of the user */}
+                <Col sm={4}>
+                  <Link to={`/users/${this.props.user.id}`}>
+                    <Button size="sm">View</Button>
+                  </Link>
+                </Col>
+                {/* <Col sm={4}>
+                  {this.props.user.friend ? (
+                    ""
+                  ) : (
+                    <Button size="sm" onClick={this.followUser}>
+                      Follow
+                    </Button>
+                  )}
+                </Col> */}
+              </Row>
+            </div>
+          )}
         </Card>
       </Container>
     );

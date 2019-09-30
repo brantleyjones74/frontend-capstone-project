@@ -38,7 +38,6 @@ export default class NavBar extends React.Component {
     this.props.changeLogoutState();
   };
 
-
   render() {
     return (
       <div>
@@ -47,9 +46,6 @@ export default class NavBar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/creels">Creels</NavLink>
-              </NavItem>
               <NavItem>
                 <NavLink href="/users">Users</NavLink>
               </NavItem>
