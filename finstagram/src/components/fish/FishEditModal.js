@@ -8,8 +8,8 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  FormGroup,
-  Label,
+  // FormGroup,
+  // Label,
   Form
 } from "reactstrap";
 import * as firebase from "firebase/app";
