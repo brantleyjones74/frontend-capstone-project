@@ -199,7 +199,7 @@ export default class FishEditModal extends React.Component {
               id="photo"
               onChange={e => this.setState({ photo: e.target.files[0] })}
             />
-            <FormGroup check>
+            {/* <FormGroup check>
               <Label check>
                 <Input
                   type="checkbox"
@@ -208,7 +208,7 @@ export default class FishEditModal extends React.Component {
                 />
                 Catch of the Day
               </Label>
-            </FormGroup>
+            </FormGroup> */}
           </ModalBody>
           <ModalFooter>
             {/* when button is clicked update the existing fish info in json database */}

@@ -8,9 +8,9 @@ import {
   ModalBody,
   ModalFooter,
   Input,
-  Label,
+  // Label,
   Form,
-  FormGroup
+  // FormGroup
 } from "reactstrap";
 import * as firebase from "firebase/app";
 import "firebase/storage";
@@ -178,7 +178,7 @@ export default class FishAddModal extends React.Component {
               // on change of input set state of photo to file being chosen
               onChange={e => this.setState({ photo: e.target.files[0] })}
             ></Input>
-            <FormGroup check>
+            {/* <FormGroup check>
               <Label check>
                 <Input
                   type="checkbox"
@@ -187,7 +187,7 @@ export default class FishAddModal extends React.Component {
                 />
                 Catch of the Day
               </Label>
-            </FormGroup>
+            </FormGroup> */}
           </ModalBody>
           <ModalFooter>
             {/* when button is clicked submit new fish to database */}
