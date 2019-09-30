@@ -14,7 +14,7 @@ import UserManager from "../../modules/UserManager";
 import ProfileEditModal from "../profile/ProfileEditModal";
 import CreelList from "../creel/CreelList";
 import ConnectionManager from "../../modules/ConnectionManager";
-import FollowList from "../home/FollowList";
+// import FollowList from "../home/FollowList";
 import "../home/Home.css";
 
 export default class Home extends Component {
