@@ -79,12 +79,8 @@ export default class FishEditModal extends React.Component {
   updateExistingFish = evt => {
     evt.preventDefault();
     // if species, length, or weight are empty alert user to fill out all fields
-    if (
-      this.state.fishSpecies === "" ||
-      this.state.fishLength === "" ||
-      this.state.fishWeight === ""
-    ) {
-      window.alert("Please fill out all fields.");
+    if (this.state.fishSpecies === "") {
+      window.alert("Please add a species.");
       //   if type of photo in state is an object
     } else if (typeof this.state.photo === "object") {
       /* SAVE IMAGE USING FIREBASE */
@@ -188,6 +184,7 @@ export default class FishEditModal extends React.Component {
               onChange={this.inputFieldHandler}
               defaultValue={this.state.fishLure}
             >
+              <option>Select Bait Type</option>
               <option value="Live Bait">Live Bait</option>
               <option value="Soft Plastic">Soft Plastic</option>
               <option value="Hard Plastic">Hard Plastic</option>

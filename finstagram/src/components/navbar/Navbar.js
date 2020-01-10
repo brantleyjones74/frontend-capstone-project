@@ -46,9 +46,13 @@ export default class NavBar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/users">Users</NavLink>
-              </NavItem>
+              {this.props.userAuthenticated() ? (
+                <NavItem>
+                  <NavLink href="/users">Users</NavLink>
+                </NavItem>
+              ) : (
+                ""
+              )}
               <NavItem>
                 {this.props.userAuthenticated() ? (
                   <Link to="/">
