@@ -9,7 +9,7 @@ import {
   ModalFooter,
   Input,
   // Label,
-  Form,
+  Form
   // FormGroup
 } from "reactstrap";
 import * as firebase from "firebase/app";
@@ -62,12 +62,8 @@ export default class FishAddModal extends React.Component {
     // prevents page from reloading when event happens
     evt.preventDefault();
     // basic input validation. if any field is empty alerts the user to fill out all fields.
-    if (
-      this.state.fishSpecies === "" ||
-      this.state.fishLength === "" ||
-      this.state.fishWeight === ""
-    ) {
-      window.alert("Please fill out all fields.");
+    if (this.state.fishSpecies === "") {
+      window.alert("Please add a species.");
       // if photo in state is NOT equal to an empty string
     } else if (this.state.photo !== "") {
       /* SAVE IMAGE USING FIREBASE */
@@ -143,19 +139,19 @@ export default class FishAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
-            Length in Inches:
+            Length:
             <Input
               id="fishLength"
               type="number"
-              placeholder="Fish Length in inches"
+              placeholder="Length"
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
-            Weight in Pounds:
+            Weight:
             <Input
               id="fishWeight"
               type="number"
-              placeholder="Fish Weight in pounds"
+              placeholder="Weight"
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             />
@@ -166,6 +162,7 @@ export default class FishAddModal extends React.Component {
               // invoke inputFieldHandler function when input field is changed.
               onChange={this.inputFieldHandler}
             >
+              <option>Select Bait Type</option>
               <option value="Live Bait">Live Bait</option>
               <option value="Soft Plastic">Soft Plastic</option>
               <option value="Hard Plastic">Hard Plastic</option>
